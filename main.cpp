@@ -51,6 +51,7 @@ int main(){
         List<List<Edge>> inProgress;
         List<List<Edge>> routes;
         List<int> lengths;
+    //the beginning of the routes
         std::pair<edge_iterator, edge_iterator> EI;
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
             if(source(EI.first) == Reno){
@@ -59,10 +60,19 @@ int main(){
                 inProgress.insert(newPath);
             }
         }
-        for(i = 0; i < /*function zoya is making*/ ; i++){
-            List<Edge> duplicate(-----);
+    //making the paths
+        while (!inProgress.isEmpty()){ 
+            size = inProgress.getLength();
+            for(int i = 0; i < size; i++){
+                Edge last_edge = inProgress.getEntry(i);
+                int current_city = last_edge.second;
+                for(int j = 0; j < /*function zoya is making*/ ; i++){
+                    List<Edge> duplicate(-----);
 
+                }
+            }
         }
+
 
 
     return 0;
