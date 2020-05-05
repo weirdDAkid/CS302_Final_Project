@@ -24,35 +24,43 @@ typedef std::pair<int, int> Edge;
 
 int main(){
 
-    DirectedGraph cityMap;
+    //making graph
+        DirectedGraph cityMap;
 
-    boost::add_edge(1, 2, 218, cityMap);
-    boost::add_edge(1, 3, 518, cityMap);
-    boost::add_edge(1, 4, 704, cityMap);
-    boost::add_edge(1, 5, 439, cityMap);
+        boost::add_edge(1, 2, 218, cityMap);
+        boost::add_edge(1, 3, 518, cityMap);
+        boost::add_edge(1, 4, 704, cityMap);
+        boost::add_edge(1, 5, 439, cityMap);
 
-    boost::add_edge(2, 1, 218, cityMap);
-    boost::add_edge(2, 4, 811, cityMap);
-    boost::add_edge(2, 5, 564, cityMap);
+        boost::add_edge(2, 1, 218, cityMap);
+        boost::add_edge(2, 4, 811, cityMap);
+        boost::add_edge(2, 5, 564, cityMap);
 
-    boost::add_edge(3, 1, 518, cityMap);
-    boost::add_edge(3, 4, 829, cityMap);
-    boost::add_edge(3, 5, 421, cityMap);
+        boost::add_edge(3, 1, 518, cityMap);
+        boost::add_edge(3, 4, 829, cityMap);
+        boost::add_edge(3, 5, 421, cityMap);
 
-    boost::add_edge(4, 1, 704, cityMap);
-    boost::add_edge(4, 2, 811, cityMap);
-    boost::add_edge(4, 3, 829, cityMap);
-    boost::add_edge(4, 5, 1118, cityMap);
+        boost::add_edge(4, 1, 704, cityMap);
+        boost::add_edge(4, 2, 811, cityMap);
+        boost::add_edge(4, 3, 829, cityMap);
+        boost::add_edge(4, 5, 1118, cityMap);
 
-    boost::add_edge(5, 1, 439, cityMap);
-    boost::add_edge(5, 2, 564, cityMap);
-    boost::add_edge(5, 3, 1118, cityMap);
-    boost::add_edge(5, 4, 421, cityMap);
+        boost::add_edge(5, 1, 439, cityMap);
+        boost::add_edge(5, 2, 564, cityMap);
+        boost::add_edge(5, 3, 1118, cityMap);
+        boost::add_edge(5, 4, 421, cityMap);
 
 
     //makeing the list of lists
-    List<List<Edge>> inProgress;
-    List<List<Edge>> routes;
-    List<int> lengths;
+        List<List<Edge>> inProgress;
+        List<List<Edge>> routes;
+        List<int> lengths;
+        std::pair<edge_iterator, edge_iterator> EI;
+        for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
+            if(EI.first == Reno)
+        }
+
+
+
     return 0;
 }
