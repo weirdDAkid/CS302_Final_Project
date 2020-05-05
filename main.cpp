@@ -66,7 +66,7 @@ int main(){
             for(int i = 0; i < size; i++){
                 Edge last_edge = inProgress.getEntry(i);
                 int current_city = last_edge.second;
-                for(int j = 0; j < /*function zoya is making*/ ; i++){
+                for(i = 0; i < numConnections(cityMap, current_city) ; i++){
                     List<Edge> duplicate(-----);
 
                 }
@@ -88,6 +88,6 @@ int numConnections(DirectedGraph &cityMap, int city){
             count++;
         }
     }
-    
+
     return count;
 }
