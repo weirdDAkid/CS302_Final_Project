@@ -14,7 +14,20 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 typedef std::pair<int, int> Edge;
 
+//returns number of edges that depart from iputted city
 int numConnections(DirectedGraph &cityMap, int city);
+
+//returns the __'th edge that starts from the inputted city
+Edge connectionNum__(DirectedGraph &cityMap, int city, int num);
+
+//tells if graph contians a certain edge
+bool containsEdge(DirectedGraph &cityMap, Edge edgeInput);
+
+//tells if a city has been visited
+bool visited(DirectedGraph &cityMap, int city, List<Edge> route);
+
+//tells if all cities have been visited
+bool visitedAll(DirectedGraph &cityMap, List<Edge> route));
 
 int main(){
 
@@ -22,6 +35,8 @@ int main(){
         DirectedGraph cityMap;
 
         int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
+
+        //edges will be different going in the different directions
 
         boost::add_edge(Reno, SanFran, 218, cityMap);
         boost::add_edge(Reno, SaltLake, 518, cityMap);
@@ -53,22 +68,54 @@ int main(){
         List<int> lengths;
     //the beginning of the routes
         std::pair<edge_iterator, edge_iterator> EI;
+        int ind = 0;
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
             if(source(EI.first) == Reno){
                 List<Edge> newPath;
-                newPath.insert(EI);
-                inProgress.insert(newPath);
+                newPath.insert(0, EI);
+                inProgress.insert(ind, newPath);
             }
         }
     //making the paths
         while (!inProgress.isEmpty()){ 
-            size = inProgress.getLength();
+            //sets size for only the original pats, not the new added ones
+            int size = inProgress.getLength();
+            //adds all other possible paths
             for(int i = 0; i < size; i++){
-                Edge last_edge = inProgress.getEntry(i);
+                List<Edge> Current_route = inProgress.getEntry(i);
+                Edge last_edge = Current_route.getEntry(Current_route.getLength());
                 int current_city = last_edge.second;
-                for(i = 0; i < numConnections(cityMap, current_city) ; i++){
-                    List<Edge> duplicate(-----);
-
+                for(j = 1; j < numConnections(cityMap, current_city) ; j++){
+                    Edge next_edge = connectionNum__(cityMap, current_city, j);
+                    //I am not allowing a path to go over the same edge twice, this checks that condition
+                    if(!(containsEdge(cityMap, next_edge)){
+                        List<Edge> duplicate(Current_route);
+                        duplicate.insert(duplicate.getLength(), next_edge);
+                        inProgress.insert(inProgress.getLength(), duplicate);
+                    }
+                }
+                Edge next_edge = connectionNum__(cityMap, current_city, 0);
+                //same check case as earlier
+                if(!(containsEdge(cityMap, next_edge)){
+                    Current_route.insert(Current_route.getLength(), next_edge);
+                }
+                else{
+                    inProgress.remove(i);
+                }
+            }
+            int index = 0;
+            while(index != inProgress.getLength()){
+                List<Edge> current = inProgress.getEntry(index);
+                Edge most_recent = current.getEntry(current.getLength() - 1);
+                int city = most_recent.second();
+                if(city == Reno && visitedAll(cityMap, current)){
+                    routes.insert((routes.getLength()), current);
+                    //calculate length and add that to that list
+                    //output route and length to file
+                    inProgress.remove(index);
+                }
+                else{
+                    index++;
                 }
             }
         }
