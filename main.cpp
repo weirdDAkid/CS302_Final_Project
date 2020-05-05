@@ -8,6 +8,7 @@
 typedef boost::property<boost::edge_weight_t, int> EdgeWeightProperty;
 typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost::no_property, EdgeWeightProperty > DirectedGraph;
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
+typedef std::pair<int, int> Edge;
 
 /* List of Cities:
     City 'A' = Reno
@@ -44,5 +45,10 @@ int main(){
     boost::add_edge('E','C', 1118, cityMap);
     boost::add_edge('E','D', 421, cityMap);
 
+
+    //makeing the list of lists
+    List<List<Edge>> inProgress;
+    List<List<Edge>> routes;
+    List<int> lengths;
     return 0;
 }
