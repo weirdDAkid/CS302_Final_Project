@@ -14,6 +14,8 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 typedef std::pair<int, int> Edge;
 
+int numConnections(DirectedGraph &cityMap, int city);
+
 int main(){
 
     //making graph
@@ -61,4 +63,18 @@ int main(){
 
 
     return 0;
+}
+
+//Function which returns the  number of connections a city has
+int numConnections(DirectedGraph &cityMap, int city){
+    int count = 0;
+    std::pair<edge_iterator, edge_iterator> EI;
+
+    for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
+        if(source(EI.first) == Reno){
+            count++;
+        }
+    }
+    
+    return count;
 }
