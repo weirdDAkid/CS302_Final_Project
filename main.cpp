@@ -57,7 +57,11 @@ int main(){
         List<int> lengths;
         std::pair<edge_iterator, edge_iterator> EI;
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-            if(EI.first == Reno)
+            if(source(EI.first) == Reno){
+                List<Edge> newPath;
+                newPath.insert(EI);
+                inProgress.insert(newPath);
+            }
         }
 
 
