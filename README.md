@@ -1,12 +1,5 @@
 # CS302_Final_Project
 
-Throughout this Final Project:
-    City 1 = Reno
-    City 2 = San Francisco
-    City 3 = Salt Lake City
-    City 4 = Seattle
-    City 5 = Las Vegas
-
 Connections between Cities:
     Reno's (1) Connections:
         San Francisco (2), weight 218 mi

@@ -14,44 +14,38 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 typedef std::pair<int, int> Edge;
 
-/* List of Cities:
-    City 1 = Reno
-    City 2 = San Francisco
-    City 3 = Salt Lake City
-    City 4 = Seattle
-    City 5 = Las Vegas
-*/
-
 int main(){
 
     //making graph
         DirectedGraph cityMap;
 
-        boost::add_edge(1, 2, 218, cityMap);
-        boost::add_edge(1, 3, 518, cityMap);
-        boost::add_edge(1, 4, 704, cityMap);
-        boost::add_edge(1, 5, 439, cityMap);
+        int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
 
-        boost::add_edge(2, 1, 218, cityMap);
-        boost::add_edge(2, 4, 811, cityMap);
-        boost::add_edge(2, 5, 564, cityMap);
+        boost::add_edge(Reno, SanFran, 218, cityMap);
+        boost::add_edge(Reno, SaltLake, 518, cityMap);
+        boost::add_edge(Reno, Seattle, 704, cityMap);
+        boost::add_edge(Reno, Vegas, 439, cityMap);
 
-        boost::add_edge(3, 1, 518, cityMap);
-        boost::add_edge(3, 4, 829, cityMap);
-        boost::add_edge(3, 5, 421, cityMap);
+        boost::add_edge(SanFran, Reno, 218, cityMap);
+        boost::add_edge(SanFran, Seattle, 811, cityMap);
+        boost::add_edge(SanFran, Vegas, 564, cityMap);
 
-        boost::add_edge(4, 1, 704, cityMap);
-        boost::add_edge(4, 2, 811, cityMap);
-        boost::add_edge(4, 3, 829, cityMap);
-        boost::add_edge(4, 5, 1118, cityMap);
+        boost::add_edge(SaltLake, Reno, 518, cityMap);
+        boost::add_edge(SaltLake, Seattle, 829, cityMap);
+        boost::add_edge(SaltLake, Vegas, 421, cityMap);
 
-        boost::add_edge(5, 1, 439, cityMap);
-        boost::add_edge(5, 2, 564, cityMap);
-        boost::add_edge(5, 3, 1118, cityMap);
-        boost::add_edge(5, 4, 421, cityMap);
+        boost::add_edge(Seattle, Reno, 704, cityMap);
+        boost::add_edge(Seattle, SanFran, 811, cityMap);
+        boost::add_edge(Seattle, SaltLake, 829, cityMap);
+        boost::add_edge(Seattle, Vegas, 1118, cityMap);
+
+        boost::add_edge(Vegas, Reno, 439, cityMap);
+        boost::add_edge(Vegas, SanFran, 564, cityMap);
+        boost::add_edge(Vegas, SaltLake, 1118, cityMap);
+        boost::add_edge(Vegas, Seattle, 421, cityMap);
 
 
-    //makeing the list of lists
+    //making the list of lists
         List<List<Edge>> inProgress;
         List<List<Edge>> routes;
         List<int> lengths;
