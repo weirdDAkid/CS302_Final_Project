@@ -59,7 +59,7 @@ int main(){
                 inProgress.insert(newPath);
             }
         }
-        for(i = 0; i < /*function zoya is making*/ ; i++){
+        for(i = 0; i < numConnections(cityMap, current_city) ; i++){
             List<Edge> duplicate(-----);
 
         }
@@ -78,6 +78,6 @@ int numConnections(DirectedGraph &cityMap, int city){
             count++;
         }
     }
-    
+
     return count;
 }
