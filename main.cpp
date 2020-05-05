@@ -14,39 +14,39 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 
 /* List of Cities:
-    City 'A' = Reno
-    City 'B' = San Francisco
-    City 'C' = Salt Lake City
-    City 'D' = Seattle
-    City 'E' = Las Vegas
+    City 1 = Reno
+    City 2 = San Francisco
+    City 3 = Salt Lake City
+    City 4 = Seattle
+    City 5 = Las Vegas
 */
 
 int main(){
 
     DirectedGraph cityMap;
 
-    boost::add_edge('A', 'B', 218, cityMap);
-    boost::add_edge('A','C', 518, cityMap);
-    boost::add_edge('A','D', 704, cityMap);
-    boost::add_edge('A','E', 439, cityMap);
+    boost::add_edge(1, 2, 218, cityMap);
+    boost::add_edge(1, 3, 518, cityMap);
+    boost::add_edge(1, 4, 704, cityMap);
+    boost::add_edge(1, 5, 439, cityMap);
 
-    boost::add_edge('B','A', 218, cityMap);
-    boost::add_edge('B','D', 811, cityMap);
-    boost::add_edge('B','E', 564, cityMap);
+    boost::add_edge(2, 1, 218, cityMap);
+    boost::add_edge(2, 4, 811, cityMap);
+    boost::add_edge(2, 5, 564, cityMap);
 
-    boost::add_edge('C','A', 518, cityMap);
-    boost::add_edge('C','D', 829, cityMap);
-    boost::add_edge('C','E', 421, cityMap);
+    boost::add_edge(3, 1, 518, cityMap);
+    boost::add_edge(3, 4, 829, cityMap);
+    boost::add_edge(3, 5, 421, cityMap);
 
-    boost::add_edge('D','A', 704, cityMap);
-    boost::add_edge('D','B', 811, cityMap);
-    boost::add_edge('D','C', 829, cityMap);
-    boost::add_edge('D','E', 1118, cityMap);
+    boost::add_edge(4, 1, 704, cityMap);
+    boost::add_edge(4, 2, 811, cityMap);
+    boost::add_edge(4, 3, 829, cityMap);
+    boost::add_edge(4, 5, 1118, cityMap);
 
-    boost::add_edge('E','A', 439, cityMap);
-    boost::add_edge('E','B', 564, cityMap);
-    boost::add_edge('E','C', 1118, cityMap);
-    boost::add_edge('E','D', 421, cityMap);
+    boost::add_edge(5, 1, 439, cityMap);
+    boost::add_edge(5, 2, 564, cityMap);
+    boost::add_edge(5, 3, 1118, cityMap);
+    boost::add_edge(5, 4, 421, cityMap);
 
     return 0;
 }
