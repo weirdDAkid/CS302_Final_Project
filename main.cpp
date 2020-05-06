@@ -130,8 +130,17 @@ int main(){
                 }
             }
         }
-
-
+        //looking for largest
+        int smallest_val = lengths.getEntry(0);
+        int smallest_index = 0;
+    /*
+        for(int i = 0; i < lengths.getLength(); i++){
+            if(lengths.getEntry(i) < smallest_val){
+                smallest_val = lengths.getEntry(i);
+                smallest_index = i;
+            }
+        }
+    */
 
     return 0;
 }
