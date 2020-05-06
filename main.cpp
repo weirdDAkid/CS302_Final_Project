@@ -221,7 +221,7 @@ bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput){
 
     for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
         edge_iterator first_EI = EI.first; 
-        if(source(*first_EI, cityMap) == edgeInput){
+        if(*first_EI == edgeInput){
             edgeExists = 1;
         }
     }
