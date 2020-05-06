@@ -1,6 +1,7 @@
 #include <iostream>                  // for std::cout
 #include <utility>                   // for std::pair
 #include <algorithm>                 // for std::for_each
+#include <fstream>                   // for std::ofstream
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
@@ -69,6 +70,11 @@ int main(){
         List<List<Edge>> inProgress;
         List<List<Edge>> routes;
         List<int> lengths;
+
+    //Opening output file
+        std::ofstream myFile;
+        myFile.open("ListOfAllRoutes.txt");
+
     //the beginning of the routes
         std::pair<edge_iterator, edge_iterator> EI;
         int ind = 0;
@@ -115,13 +121,18 @@ int main(){
                     routes.insert((routes.getLength()), current);
                     //calculate length and add that to that list
                     /*
-                    int weight
+                    int routeLength
                     for(int k = 0; k < current.getLength(); k++){
-                        weight = weight + EdgeWeightMap[current.getEntry(k)]
+                        routeLength = routeLength + EdgeWeightMap[current.getEntry(k)]
                     }
-                    lengths.insert(lengths.getLength(), weight);
+                    lengths.insert(lengths.getLength(), routeLength);
                     */
                     //output route and length to file
+                    /*
+                    myFile << "Route " << index << ": ";
+                    printRoute(cityMap, current, myFile);
+                    myFile << "Length: " << routeLength << std::endl;
+                    */
 
                     inProgress.remove(index);
                 }
@@ -130,7 +141,8 @@ int main(){
                 }
             }
         }
-        //looking for largest
+
+    //looking for largest
         int smallest_val = lengths.getEntry(0);
         int smallest_index = 0;
     /*
@@ -141,6 +153,19 @@ int main(){
             }
         }
     */
+
+   //Printing out shortest route to file
+        myFile << "Shortest Route: ";
+        printRoute(cityMap, routes.getEntry(smallest_index), myFile);
+        myFile << "Length: " << smallest_val << " miles" << std::endl;
+
+    //Printing out shortest route to screen
+        std::cout << "Shortest Route: ";
+        printRoute(cityMap, routes.getEntry(smallest_index), std::cout);
+        std::cout << "Length: " << smallest_val << " miles" << std::endl;
+
+   //Closing file
+        myFile.close();
 
     return 0;
 }
