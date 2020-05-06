@@ -2,9 +2,9 @@
 #include <utility>                   // for std::pair
 #include <algorithm>                 // for std::for_each
 #include <fstream>                   // for std::ofstream
-#include <boost/graph/graph_traits.hpp>
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/dijkstra_shortest_paths.hpp>
+#include <boost_1_66_0/graph/graph_traits.hpp>
+#include <boost_1_66_0/graph/adjacency_list.hpp>
+#include <boost_1_66_0/graph/dijkstra_shortest_paths.hpp>
 
 #include "Node.h"
 #include "ListInterface.h"
