@@ -81,7 +81,7 @@ int main(){
         }
     //making the paths
         while (!inProgress.isEmpty()){ 
-            //sets size for only the original pats, not the new added ones
+            //sets size for only the original paths, not the new added ones
             int size = inProgress.getLength();
             //adds all other possible paths
             for(int i = 0; i < size; i++){
@@ -151,10 +151,69 @@ int numConnections(DirectedGraph &cityMap, int city){
     std::pair<edge_iterator, edge_iterator> EI;
 
     for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-        if(source(*EI.first) == Reno){
+        if(source(*EI.first) == city){
             count++;
         }
     }
 
     return count;
 }
+
+//returns the __'th edge that starts from the inputted city
+Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
+    std::pair<edge_iterator, edge_iterator> EI;
+    EI = edges(cityMap);
+
+    //checks for conditional case where num = 0
+    if(num == 0){
+        while( (source(*EI.first) != city) ){
+            ++EI.first
+        }
+        
+        return *EI.first
+    }
+
+    //if num > 1, iterates through the edges, incrementing when it hits edges belonging to city
+    //once it reaches the __'th edge it will return that edge
+    int i = 0;
+    while( (i < num) || (EI.first != EI.second) ){}
+        if(source(*EI.first) == city){
+            ++i;
+
+            if( i == num ){
+                return *EI.first;
+            }
+        }
+
+        ++EI.first;
+    }
+
+    //if it reaches that point, there are < "num" number of edges corresponding to the city
+    return NULL;
+}
+
+//tells if graph contians a certain edge
+bool containsEdge(DirectedGraph &cityMap, Edge edgeInput){
+    bool edgeExists = 0;
+
+    std::pair<edge_iterator, edge_iterator> EI;
+
+    for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
+        if(source(*EI.first) == edgeInput){
+            edgeExists = 1;
+        }
+    }
+
+    return edgeExists;
+}
+
+//tells if a city has been visited
+bool visited(DirectedGraph &cityMap, int city, List<EdgeW> route){
+
+}
+
+//tells if all cities have been visited
+bool visitedAll(DirectedGraph &cityMap, List<Edge> route);
+
+//prints the route
+void printRoute(DirectedGraph &cityMap, List<Edge> route);
