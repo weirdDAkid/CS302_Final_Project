@@ -2,9 +2,9 @@
 #include <utility>                   // for std::pair
 #include <algorithm>                 // for std::for_each
 #include <fstream>                   // for std::ofstream
-#include <boost_1_66_0/graph/graph_traits.hpp>
-#include <boost_1_66_0/graph/adjacency_list.hpp>
-#include <boost_1_66_0/graph/dijkstra_shortest_paths.hpp>
+#include <boost/graph/graph_traits.hpp>
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/dijkstra_shortest_paths.hpp>
 
 #include "Node.h"
 #include "ListInterface.h"
@@ -13,7 +13,8 @@
 typedef boost::property<boost::edge_weight_t, int> EdgeWeightProperty;
 typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost::no_property, EdgeWeightProperty > DirectedGraph;
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
-typedef graph_traits<Graph>::edge_iterator Edge;
+//typedef std::pair<int, int> Edge;
+typedef graph_traits<DirectedGraph>::edge_descriptor Edge;
 
 //returns number of edges that depart from iputted city
 int numConnections(DirectedGraph &cityMap, int city);
@@ -79,9 +80,11 @@ int main(){
         std::pair<edge_iterator, edge_iterator> EI;
         int ind = 0;
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-            if(source(*EI.first) == Reno){
+            edge_iterator first_EI = EI.first; 
+            Edge newEdge = *first_EI;
+            if(source(*first_EI, cityMap) == Reno){
                 List<Edge> newPath;
-                newPath.insert(0, *EI);
+                newPath.insert(0, newEdge);
                 inProgress.insert(ind, newPath);
             }
         }
@@ -153,7 +156,7 @@ int main(){
             }
         }
     */
-
+   /*
    //Printing out shortest route to file
         myFile << "Shortest Route: ";
         printRoute(cityMap, routes.getEntry(smallest_index), myFile);
@@ -166,7 +169,7 @@ int main(){
 
    //Closing file
         myFile.close();
-
+    */
     return 0;
 }
 
@@ -176,7 +179,8 @@ int numConnections(DirectedGraph &cityMap, int city){
     std::pair<edge_iterator, edge_iterator> EI;
 
     for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-        if(source(*EI.first) == city){
+        edge_iterator first_EI = EI.first; 
+        if(source(*first_EI, cityMap) == city){
             count++;
         }
     }
@@ -193,19 +197,20 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     //once it reaches the __'th edge it will return that edge
     int i = 0;
     while( (i < num) || (EI.first != EI.second) ){
-        if(source(*EI.first) == city){
+        edge_iterator first_EI = EI.first; 
+        if(source(*first_EI, cityMap) == city){
             ++i;
 
             if( i == num ){
-                return *EI.first;
+                return *first_EI;
             }
         }
 
         ++EI.first;
     }
-
+    
     //if it reaches that point, there are < "num" number of edges corresponding to the city
-    return NULL;
+    return EI.first;
 }
 
 //tells if graph contians a certain edge
@@ -215,7 +220,8 @@ bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput){
     std::pair<edge_iterator, edge_iterator> EI;
 
     for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-        if(source(*EI.first) == edgeInput){
+        edge_iterator first_EI = EI.first; 
+        if(source(*first_EI, cityMap) == edgeInput){
             edgeExists = 1;
         }
     }
@@ -262,7 +268,7 @@ bool visitedAll(DirectedGraph &cityMap, List<Edge> &route){
 
 //prints the route
 void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os){
-
+    Edge temp;
     //Prints out first cities on route
     for(int i = 0; i < route.getLength(); ++i){
         temp = route.getEntry(i);
