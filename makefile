@@ -1,7 +1,7 @@
-all: driver.o
+all: main
 
-driver.o: driver.cpp BinarySearchTree.h BinaryTreeInterface.h BinaryNode.h
-	g++ --std=c++11 driver.cpp BinarySearchTree.h BinaryTreeInterface.h BinaryNode.h -o driver.o
+main: main.cpp Node.h ListInterface.h List.h
+	g++ --std=c++11 main.cpp Node.h ListInterface.h List.h -o main
 
 clean:
-	rm driver
+	rm main
