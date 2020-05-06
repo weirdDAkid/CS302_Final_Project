@@ -27,7 +27,10 @@ bool containsEdge(DirectedGraph &cityMap, Edge edgeInput);
 bool visited(DirectedGraph &cityMap, int city, List<EdgeW> route);
 
 //tells if all cities have been visited
-bool visitedAll(DirectedGraph &cityMap, List<Edge> route));
+bool visitedAll(DirectedGraph &cityMap, List<Edge> route);
+
+//prints the route
+void printRoute(DirectedGraph &cityMap, List<Edge> route);
 
 int main(){
 
@@ -105,7 +108,7 @@ int main(){
             }
             int index = 0;
             while(index != inProgress.getLength()){
-                List<Edge current = inProgress.getEntry(index);
+                List<Edge> current = inProgress.getEntry(index);
                 Edge most_recent = current.getEntry(current.getLength() - 1);
                 int city = target(most_recent, cityMap);
                 if(city == Reno && visitedAll(cityMap, current)){
@@ -114,10 +117,12 @@ int main(){
                     /*
                     int weight
                     for(int k = 0; k < current.getLength(); k++){
-                        weight = weight + EdgeWeightMap
+                        weight = weight + EdgeWeightMap[current.getEntry(k)]
                     }
+                    lengths.insert(lengths.getLength(), weight);
                     */
                     //output route and length to file
+
                     inProgress.remove(index);
                 }
                 else{
