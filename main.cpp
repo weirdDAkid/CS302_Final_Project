@@ -21,16 +21,16 @@ int numConnections(DirectedGraph &cityMap, int city);
 Edge connectionNum__(DirectedGraph &cityMap, int city, int num);
 
 //tells if graph contians a certain edge
-bool containsEdge(DirectedGraph &cityMap, Edge edgeInput);
+bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput);
 
 //tells if a city has been visited
-bool visited(DirectedGraph &cityMap, int city, List<EdgeW> route);
+bool visited(DirectedGraph &cityMap, int city, List<Edge> &route);
 
 //tells if all cities have been visited
-bool visitedAll(DirectedGraph &cityMap, List<Edge> route);
+bool visitedAll(DirectedGraph &cityMap, List<Edge> &route);
 
 //prints the route
-void printRoute(DirectedGraph &cityMap, List<Edge> route);
+void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os);
 
 int main(){
 
@@ -155,19 +155,10 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     std::pair<edge_iterator, edge_iterator> EI;
     EI = edges(cityMap);
 
-    //checks for conditional case where num = 0
-    if(num == 0){
-        while( (source(*EI.first) != city) ){
-            ++EI.first
-        }
-        
-        return *EI.first
-    }
-
     //if num > 1, iterates through the edges, incrementing when it hits edges belonging to city
     //once it reaches the __'th edge it will return that edge
     int i = 0;
-    while( (i < num) || (EI.first != EI.second) ){}
+    while( (i < num) || (EI.first != EI.second) ){
         if(source(*EI.first) == city){
             ++i;
 
@@ -184,7 +175,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 }
 
 //tells if graph contians a certain edge
-bool containsEdge(DirectedGraph &cityMap, Edge edgeInput){
+bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput){
     bool edgeExists = 0;
 
     std::pair<edge_iterator, edge_iterator> EI;
@@ -199,12 +190,88 @@ bool containsEdge(DirectedGraph &cityMap, Edge edgeInput){
 }
 
 //tells if a city has been visited
-bool visited(DirectedGraph &cityMap, int city, List<EdgeW> route){
+bool visited(DirectedGraph &cityMap, int city, List<Edge> &route){
+    bool visitedCity = 0;
 
+    //Iterates through Route list and checks the first value of each edge for match to city
+    Edge temp;
+    for(int i = 0; i < route.getLength(); ++i){
+        temp = route.getEntry(i);
+
+        //If the city is found, sets visitedCity to true
+        if( source(temp, cityMap) == city ){
+            visitedCity = 1;
+        }
+    }
+
+    //Checks the second value of the last edge for match to city
+    if( target(temp, cityMap) == city){
+        visitedCity = 1;
+    }
+
+    return visitedCity;
 }
 
 //tells if all cities have been visited
-bool visitedAll(DirectedGraph &cityMap, List<Edge> route);
+bool visitedAll(DirectedGraph &cityMap, List<Edge> &route){
+    bool visitedAllCities = 1;
+
+    //Checks if visited all 5 cities
+    for(int i = 1; i <= 5; ++i){
+        if( !visited(cityMap, i, route) ){
+            visitedAllCities = 0;
+        }
+    }
+
+    return visitedAllCities;
+}
 
 //prints the route
-void printRoute(DirectedGraph &cityMap, List<Edge> route);
+void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os){
+
+    //Prints out first cities on route
+    for(int i = 0; i < route.getLength(); ++i){
+        temp = route.getEntry(i);
+
+        switch( source(temp, cityMap) ){
+            case 1:
+                os << "Reno, ";
+                break;
+            case 2:
+                os << "San Francisco, ";
+                break;
+            case 3:
+                os << "Salt Lake City, ";
+                break;
+            case 4:
+                os << "Seattle, ";
+                break;
+            case 5:
+                os << "Las Vegas, ";
+                break;
+            default:
+                os << "Oopsies";
+        }
+    }
+
+    //Prints out final city on route
+    switch( target(temp, cityMap) ){
+            case 1:
+                os << "Reno" << std::endl;
+                break;
+            case 2:
+                os << "San Francisco" << std::endl;
+                break;
+            case 3:
+                os << "Salt Lake City" << std::endl;
+                break;
+            case 4:
+                os << "Seattle" << std::endl;
+                break;
+            case 5:
+                os << "Las Vegas" << std::endl;
+                break;
+            default:
+                os << "Oopsies" << std::endl;
+        }
+}
