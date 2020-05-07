@@ -22,7 +22,7 @@ List<T>::List(const List<T> & other){
         Node<T> *index = head;
         Node<T> *currOther = other.head->getNext();
 
-        while( currOther ){
+        while( currOther->getNext() ){
             std::cout << "heckin copy constructer" << std::endl;
             Node<T> *newNodePtr = new Node<T> ( currOther->getData(), currOther->getNext() );
             index->setNext( newNodePtr );
