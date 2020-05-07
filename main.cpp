@@ -114,12 +114,15 @@ int main(){
             //adds all other possible paths
             for(int i = 0; i < size; i++){
 
+                std::cout << "inProgress.size() original: " << size << std::endl;
+                std::cout << "updating inProgres.size(): " << inProgress.size() << std::endl;
+
                 std::cout << "Inside for statement, time #" << i << std::endl;
                 
                 std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
-                /*for(int j = 0; j < i; j++){
+                for(int j = 0; j < i; j++){
                     entryIt++;
-                }*/
+                }
                 std::list<Edge> Current_route = *entryIt;
                 
 
