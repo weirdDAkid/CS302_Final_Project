@@ -117,10 +117,11 @@ int main(){
                 std::cout << "Inside for statement, time #" << i << std::endl;
                 
                 std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
-                for(int j = 0; j < i; j++){
+                /*for(int j = 0; j < i; j++){
                     entryIt++;
-                }
+                }*/
                 std::list<Edge> Current_route = *entryIt;
+                
 
                 Edge last_edge = Current_route.back();
 
