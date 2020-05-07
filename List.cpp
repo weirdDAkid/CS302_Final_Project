@@ -65,7 +65,7 @@ T List<T>::insert(const int index, T & item){
         Node<T> * hold = head;
 
         std::cout << "created hold ptr" << std::endl;
-        for(int i = 0; i < index-1; i++){
+        for(int i = 0; i < (index-1); i++){
             hold = hold->getNext();
         }
 
