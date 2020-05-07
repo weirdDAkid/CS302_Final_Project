@@ -250,6 +250,7 @@ int numConnections(DirectedGraph &cityMap, int city){
 //returns the __'th edge that starts from the inputted city
 Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     std::cout << "inside connectionNum" << std::endl;
+    std::cout << "city: " << city << ", num: " << num << std::endl;
 
     std::pair<edge_iterator, edge_iterator> EI;
     EI = edges(cityMap);
