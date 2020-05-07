@@ -80,12 +80,19 @@ int main(){
         List<int> lengths;
 
     //Opening output file
+
+        std::cout << "Opening a file" << std::endl;
         std::ofstream myFile;
         myFile.open("ListOfAllRoutes.txt");
 
     //the beginning of the routes
+        std::cout << "Beginning of routes with first iterator being used" << std::endl;
+
         std::pair<edge_iterator, edge_iterator> EI;
         int ind = 0;
+
+        std::cout << "First for loop" << std::endl;
+
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
             edge_iterator first_EI = EI.first; 
             Edge newEdge = *first_EI;
@@ -96,6 +103,9 @@ int main(){
             }
         }
     //making the paths
+
+        std::cout << "start of while loops" << std::endl;
+
         while (!inProgress.isEmpty()){ 
             //sets size for only the original paths, not the new added ones
             int size = inProgress.getLength();
