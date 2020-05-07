@@ -100,7 +100,7 @@ int main(){
                 
                 newPath.insert(0, newEdge);
 
-                
+                inProgress.getLength();
 
                 inProgress.insert( inProgress.getLength() , newPath);
             }
