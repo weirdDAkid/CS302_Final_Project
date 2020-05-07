@@ -34,6 +34,8 @@ T Node<T>::getData(){
 }
 template <class T>
 Node<T>* Node<T>::getNext()const{
+
+    std::cout << "in getNext func" << std::endl;
     return next;
 }
 
