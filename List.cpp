@@ -124,6 +124,8 @@ void List<T>::clear(){
 }
 template <class T>
 T List<T>::getEntry(const int index){
+
+    std::cout << "inside get entry function" << std::endl;
     if(index == 0){
         T to_return;
         to_return = head->getData();
