@@ -121,31 +121,23 @@ int main(){
                     entryIt ++;
                 }
                 std::list<Edge> Current_route = *entryIt;
-                
-                std::cout << "created current_route" << std::endl;
+
                 Edge last_edge = Current_route.back();
 
-                std::cout << "created last_edge" << std::endl;
                 int current_city = target(last_edge, cityMap);
-
-                std::cout << "before next for statement (with num connections)" << std::endl;
 
                 std::cout << "number of connections: " << numConnections(cityMap, current_city) << std::endl;
 
                 for(int j = 1; j < numConnections(cityMap, current_city) ; j++){
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
+                    std::cout << "Next-Edge value: " << next_edge << std::endl;
                     //I am not allowing a path to go over the same edge twice, this checks that condition
                     std::cout << "before if statement which checks if an edge has been gone over" << std::endl;
                     if(!(containsEdge(cityMap, Current_route, next_edge))){
-
                         std::cout << "inside that ^^ if statement" << std::endl;
                         std::list<Edge> duplicate(Current_route);
-                        std::cout << "duplciate Edge created" << std::endl;
                         duplicate.push_back(next_edge);
-                        std::cout << "duplicate.insert created" << std::endl;
                         inProgress.push_back(duplicate);
-
-                        std::cout << "after insert functions" << std::endl;
                     }
                 }
                 Edge next_edge = connectionNum__(cityMap, current_city, 0);
@@ -157,7 +149,7 @@ int main(){
                 else{
                     inProgress.remove(Current_route);
                 }
-                std::cout << "end of for loop" << std::endl;
+                std::cout << "end of for for all possible paths loop" << std::endl;
             }
             std::cout << "outside of for loop" << std::endl;
             int index = 0;
