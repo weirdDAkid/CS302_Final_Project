@@ -65,7 +65,8 @@ T List<T>::insert(const int index, T & item){
             tail = head;
         }
         else{
-            head = new Node<T>(item, head);
+            Node<T> *temp = new Node<T>(item, head);
+            head = temp;
         }
     }
     else{
