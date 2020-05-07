@@ -45,7 +45,13 @@ int List<T>::getLength()const{
 }
 template <class T>
 T List<T>::insert(const int index, T & item){
+
+    std::cout << "into insert func" << std::endl;
+
     if(index == 0){
+
+        std::cout << "in index==0 if statement" << std::endl;
+
         if(itemCount == 0){
             head = new Node<T>(item, nullptr);
             tail = head;
@@ -55,6 +61,9 @@ T List<T>::insert(const int index, T & item){
         }
     }
     else{
+
+        std::cout << "in 'else' statement" << std::endl;
+
         Node<T> * hold = head;
         for(int i = 0; i < index-1; i++){
             hold = hold->getNext();
@@ -62,6 +71,8 @@ T List<T>::insert(const int index, T & item){
         Node<T> * hold2 = hold->getNext();
         hold->setNext(new Node<T>(item, hold2));
     }
+
+    std::cout << "outside of insert - if statements" << std::endl;
     itemCount++;
     return item;
 }
