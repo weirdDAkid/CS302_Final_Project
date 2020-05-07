@@ -6,9 +6,9 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 
-#include "Node.h"
-#include "ListInterface.h"
-#include "List.h"
+//#include "Node.h"
+//#include "ListInterface.h"
+//#include "List.h"
 
 typedef boost::property<boost::edge_weight_t, int> EdgeWeightProperty;
 typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost::no_property, EdgeWeightProperty > DirectedGraph;
@@ -23,16 +23,16 @@ int numConnections(DirectedGraph &cityMap, int city);
 Edge connectionNum__(DirectedGraph &cityMap, int city, int num);
 
 //tells if graph contians a certain edge
-bool containsEdge(DirectedGraph &cityMap,  List<Edge> &route, Edge &edgeInput);
+bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge &edgeInput);
 
 //tells if a city has been visited
-bool visited(DirectedGraph &cityMap, int city, List<Edge> &route);
+bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route);
 
 //tells if all cities have been visited
-bool visitedAll(DirectedGraph &cityMap, List<Edge> &route);
+bool visitedAll(DirectedGraph &cityMap, std::list<Edge> &route);
 
 //prints the route
-void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os);
+void printRoute(DirectedGraph &cityMap, std::list<Edge> &route, std::ostream &os);
 
 int main(){
 
@@ -75,9 +75,9 @@ int main(){
 
         std::cout << "Before the list of lists" << std::endl;
 
-        List<List<Edge>> inProgress;
-        List<List<Edge>> routes;
-        List<int> lengths;
+        std::list<std::list<Edge>> inProgress;
+        std::list<std::list<Edge>> routes;
+        std::list<int> lengths;
 
     //Opening output file
 
@@ -96,13 +96,13 @@ int main(){
             Edge newEdge = *first_EI;
 
             if(source(*first_EI, cityMap) == Reno){
-                List<Edge> newPath;
+                std::list<Edge> newPath;
                 
-                newPath.insert(0, newEdge);
+                newPath.push_front(newEdge);
 
-                std::cout << "Before inProgress, inProgress length: " << inProgress.getLength() << std::endl;
+                std::cout << "Before inProgress, inProgress length: " << inProgress.size() << std::endl;
 
-                inProgress.insert( inProgress.getLength() , newPath);
+                inProgress.push_back(newPath);
             }
 
         }
@@ -110,19 +110,24 @@ int main(){
 
         std::cout << "start of while loops" << std::endl;
 
-        while (!inProgress.isEmpty()){ 
+        while (!inProgress.empty()){ 
             //sets size for only the original paths, not the new added ones
-            int size = inProgress.getLength();
+            int size = inProgress.size();
 
             std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
             for(int i = 0; i < size; i++){
 
                 std::cout << "Inside for statement, time #" << i << std::endl;
-                List<Edge> Current_route = inProgress.getEntry(i);
-
+                
+                std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
+                for(int j = 0; j < i; j++){
+                    entryIt ++;
+                }
+                std::list<Edge> Current_route = *entryIt;
+                
                 std::cout << "created current_route" << std::endl;
-                Edge last_edge = Current_route.getEntry(Current_route.getLength()-1);
+                Edge last_edge = Current_route.back();
 
                 std::cout << "created last_edge" << std::endl;
                 int current_city = target(last_edge, cityMap);
@@ -138,11 +143,11 @@ int main(){
                     if(!(containsEdge(cityMap, Current_route, next_edge))){
 
                         std::cout << "inside that ^^ if statement" << std::endl;
-                        List<Edge> duplicate(Current_route);
+                        std::list<Edge> duplicate(Current_route);
                         std::cout << "duplciate Edge created" << std::endl;
-                        duplicate.insert(duplicate.getLength(), next_edge);
+                        duplicate.push_back(next_edge);
                         std::cout << "duplicate.insert created" << std::endl;
-                        inProgress.insert(inProgress.getLength(), duplicate);
+                        inProgress.push_back(duplicate);
 
                         std::cout << "after insert functions" << std::endl;
                     }
@@ -151,21 +156,26 @@ int main(){
                 //same check case as earlier
                 std::cout << "Before if statements about checking for duplicate case" << std::endl;
                 if(!(containsEdge(cityMap, Current_route, next_edge))){
-                    Current_route.insert(Current_route.getLength()-1, next_edge);
+                    Current_route.push_back(next_edge);
                 }
                 else{
-                    inProgress.remove(i);
+                    inProgress.remove(Current_route);
                 }
                 std::cout << "end of for loop" << std::endl;
             }
             std::cout << "outside of for loop" << std::endl;
             int index = 0;
-            while(index != inProgress.getLength()){
-                List<Edge> current = inProgress.getEntry(index);
-                Edge most_recent = current.getEntry(current.getLength() - 1);
+            while(index != inProgress.size()){
+                std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
+                for(int j = 0; j < index; j++){
+                    entryIt ++;
+                }
+                std::list<Edge> current = *entryIt;
+
+                Edge most_recent = current.back();
                 int city = target(most_recent, cityMap);
                 if(city == Reno && visitedAll(cityMap, current)){
-                    routes.insert((routes.getLength()), current);
+                    routes.push_back(current);
                     //calculate length and add that to that list
                     /*
                     int routeLength
@@ -181,7 +191,7 @@ int main(){
                     myFile << "Length: " << routeLength << std::endl;
                     */
 
-                    inProgress.remove(index);
+                    inProgress.remove(current);
                 }
                 else{
                     index++;
@@ -190,7 +200,7 @@ int main(){
         }
 
     //looking for largest
-        int smallest_val = lengths.getEntry(0);
+        int smallest_val = lengths.front();
         int smallest_index = 0;
     /*
         for(int i = 0; i < lengths.getLength(); i++){
@@ -258,13 +268,17 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 }
 
 //tells if list contians a certain edge
-bool containsEdge(DirectedGraph &cityMap,  List<Edge> &route, Edge &edgeInput){
+bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge &edgeInput){
     bool edgeExists = 0;
 
     //Iterates through Route list and checks each edge for a match
     Edge temp;
-    for(int i = 0; i < route.getLength(); ++i){
-        temp = route.getEntry(i);
+    for(int i = 0; i < route.size(); ++i){
+        std::list<Edge>::iterator entryIt = route.begin();
+        for(int j = 0; j < i; j++){
+            entryIt ++;
+        }
+        temp = *entryIt;
 
         //If the city is found, sets edgeExists to true
         if( temp == edgeInput ){
@@ -276,13 +290,17 @@ bool containsEdge(DirectedGraph &cityMap,  List<Edge> &route, Edge &edgeInput){
 }
 
 //tells if a city has been visited
-bool visited(DirectedGraph &cityMap, int city, List<Edge> &route){
+bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
     bool visitedCity = 0;
 
     //Iterates through Route list and checks the first value of each edge for match to city
     Edge temp;
-    for(int i = 0; i < route.getLength(); ++i){
-        temp = route.getEntry(i);
+    for(int i = 0; i < route.size(); ++i){
+        std::list<Edge>::iterator entryIt = route.begin();
+        for(int j = 0; j < i; j++){
+            entryIt ++;
+        }
+        temp = *entryIt;
 
         //If the city is found, sets visitedCity to true
         if( source(temp, cityMap) == city ){
@@ -299,7 +317,7 @@ bool visited(DirectedGraph &cityMap, int city, List<Edge> &route){
 }
 
 //tells if all cities have been visited
-bool visitedAll(DirectedGraph &cityMap, List<Edge> &route){
+bool visitedAll(DirectedGraph &cityMap, std::list<Edge> &route){
     bool visitedAllCities = 1;
 
     //Checks if visited all 5 cities
@@ -313,11 +331,15 @@ bool visitedAll(DirectedGraph &cityMap, List<Edge> &route){
 }
 
 //prints the route
-void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os){
+void printRoute(DirectedGraph &cityMap, std::list<Edge> &route, std::ostream &os){
     Edge temp;
     //Prints out first cities on route
-    for(int i = 0; i < route.getLength(); ++i){
-        temp = route.getEntry(i);
+    for(int i = 0; i < route.size(); ++i){
+        std::list<Edge>::iterator entryIt = route.begin();
+        for(int j = 0; j < i; j++){
+            entryIt ++;
+        }
+        temp = *entryIt;
 
         switch( source(temp, cityMap) ){
             case 1:
