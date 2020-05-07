@@ -77,7 +77,7 @@ T List<T>::insert(const int index, T & item){
         Node<T> *tempNode;
 
         std::cout << "created tempNode" << std::endl;
-        tempNode->setItem(item);
+        tempNode->setData(item);
 
         std::cout << "inserted item" << std::endl;
         tempNode->setNext(hold2);
