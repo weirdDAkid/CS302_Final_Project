@@ -105,8 +105,14 @@ int main(){
 
                 std::cout << "inside if statement" << std::endl;
                 List<Edge> newPath;
+                std::cout << "created list" << std::endl;
+                
                 newPath.insert(0, newEdge);
+
+                std::cout << "inserted into newPath list" << std::endl;
                 inProgress.insert(ind, newPath);
+
+                std::cout << "inserted into inProgress list" << std::endl;
 
                 std::cout << "inside - end of if statement" << std::endl;
             }
