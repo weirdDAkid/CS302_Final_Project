@@ -110,7 +110,7 @@ int main(){
             //sets size for only the original paths, not the new added ones
             int size = inProgress.size();
 
-            std::cout << "before for statement (inside while loop)" << std::endl;
+            //std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
             for(int i = 0; i < size; i++){
 
