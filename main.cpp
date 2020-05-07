@@ -132,7 +132,9 @@ int main(){
 
                 std::cout << "number of connections: " << numConnections(cityMap, current_city) << std::endl;
 
-                for(int j = 1; j <= numConnections(cityMap, current_city) ; j++){
+                int numberOfConnections = numConnections(cityMap, current_city);
+
+                for(int j = 1; j <= numberOfConnections ; j++){
 
                     std::cout << "numConnections for loop time #" << j << std::endl;
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
