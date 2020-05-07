@@ -65,6 +65,7 @@ T List<T>::insert(const int index, T & item){
 
             head = new Node<T>(item, nullptr);
             tail = head;
+            std::cout << "end of if statement" << std::endl;
         }
         else{
             std::cout << "else statement" << std::endl;
