@@ -122,17 +122,26 @@ int main(){
                 List<Edge> Current_route = inProgress.getEntry(i);
                 Edge last_edge = Current_route.getEntry(Current_route.getLength());
                 int current_city = target(last_edge, cityMap);
+
+                std::cout << "before next for statement (with num connections)" << std::endl;
+
                 for(int j = 1; j < numConnections(cityMap, current_city) ; j++){
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
                     //I am not allowing a path to go over the same edge twice, this checks that condition
+                    std::cout << "before if statement which checks if an edge has been gone over" << std::endl;
                     if(!(containsEdge(cityMap, next_edge))){
+
+                        std::cout << "inside that ^^ if statement" << std::endl;
                         List<Edge> duplicate(Current_route);
                         duplicate.insert(duplicate.getLength(), next_edge);
                         inProgress.insert(inProgress.getLength(), duplicate);
+
+                        std::cout << "after insert functions" << std::endl;
                     }
                 }
                 Edge next_edge = connectionNum__(cityMap, current_city, 0);
                 //same check case as earlier
+                std::cout << "Before if statements about checking for duplicate case" << std::endl;
                 if(!(containsEdge(cityMap, next_edge))){
                     Current_route.insert(Current_route.getLength(), next_edge);
                 }
