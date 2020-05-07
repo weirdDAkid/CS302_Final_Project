@@ -129,6 +129,8 @@ int main(){
 
                 std::cout << "before next for statement (with num connections)" << std::endl;
 
+                std::cout << "number of connections: " << numConnections(cityMap, current_city) << std::endl;
+
                 for(int j = 1; j < numConnections(cityMap, current_city) ; j++){
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
                     //I am not allowing a path to go over the same edge twice, this checks that condition
@@ -152,8 +154,9 @@ int main(){
                 else{
                     inProgress.remove(i);
                 }
-                std::cout << "end of while loop" << std::endl;
+                std::cout << "end of for loop" << std::endl;
             }
+            std::cout << "outside of for loop" << std::endl;
             int index = 0;
             while(index != inProgress.getLength()){
                 List<Edge> current = inProgress.getEntry(index);
