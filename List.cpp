@@ -73,7 +73,12 @@ T List<T>::insert(const int index, T & item){
         Node<T> * hold2 = hold->getNext();
 
         std::cout << "before setNext func" << std::endl;
-        hold->setNext(new Node<T>(item, hold2));
+
+        Node<T> *tempNode = new Node<T>(item, hold2);
+
+        std::cout << "created new 'temp Node' " << std::endl;
+
+        hold->setNext( tempNode );
 
         std::cout << "end of 'else' statement" << std::endl;
     }
