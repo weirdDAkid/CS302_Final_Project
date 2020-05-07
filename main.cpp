@@ -145,12 +145,13 @@ int main(){
                 Edge next_edge = connectionNum__(cityMap, current_city, 0);
                 //same check case as earlier
                 std::cout << "Before if statements about checking for duplicate case" << std::endl;
-                if(!(containsEdge(cityMap, Current_route, next_edge))){
-                    Current_route.push_back(next_edge);
-                }
-                else{
+                if(containsEdge(cityMap, Current_route, next_edge)){
                     std::cout << "removing items from inProgress" << std::endl;
                     inProgress.remove(Current_route);
+                }
+                else{
+                    Current_route.push_back(next_edge);
+                    
                 }
                 std::cout << "end of for for all possible paths loop" << std::endl;
             }
