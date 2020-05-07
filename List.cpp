@@ -46,8 +46,6 @@ int List<T>::getLength()const{
 template <class T>
 T List<T>::insert(const int index, T & item){
 
-    std::cout << "into insert func" << std::endl;
-
     if(index == 0){
 
         if(itemCount == 0){
@@ -60,33 +58,19 @@ T List<T>::insert(const int index, T & item){
     }
     else{
 
-        std::cout << "in 'else' statement" << std::endl;
-
         Node<T> * hold = head;
 
-        std::cout << "created hold ptr" << std::endl;
         for(int i = 0; i < index-1; i++){
             hold = hold->getNext();
         }
 
-        std::cout << "insert func - after the for loop" << std::endl;
         Node<T> *hold2 = hold->getNext();
 
-        std::cout << "before setNext func" << std::endl;
-
         Node<T> *tempNode;
-
-        std::cout << "created tempNode" << std::endl;
         tempNode->setData(item);
-
-        std::cout << "inserted item" << std::endl;
         tempNode->setNext(hold2);
 
-        std::cout << "finished creating new 'temp Node' " << std::endl;
-
         hold->setNext( tempNode );
-
-        std::cout << "end of 'else' statement" << std::endl;
     }
     itemCount++;
     return item;

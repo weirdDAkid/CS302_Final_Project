@@ -37,13 +37,10 @@ void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os);
 int main(){
 
     //making graph
-        std::cout << "Before we even make the graph" << std::endl;
 
         DirectedGraph cityMap;
 
         int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
-
-        std::cout << "Before we add edges" << std::endl;
 
         //edges will be different going in the different directions
 
@@ -73,63 +70,50 @@ int main(){
 
     //making the list of lists
 
-        std::cout << "Before the list of lists" << std::endl;
-
         List<List<Edge>> inProgress;
         List<List<Edge>> routes;
         List<int> lengths;
 
     //Opening output file
 
-        std::cout << "Opening a file" << std::endl;
         std::ofstream myFile;
         myFile.open("ListOfAllRoutes.txt");
 
     //the beginning of the routes
-        std::cout << "Beginning of routes with first iterator being used" << std::endl;
 
         std::pair<edge_iterator, edge_iterator> EI;
 
-        std::cout << "First for loop" << std::endl;
-
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-
-            std::cout << "Running for loop" << std::endl;
 
             edge_iterator first_EI = EI.first; 
             Edge newEdge = *first_EI;
 
-            std::cout << "right before if statement" << std::endl;
             if(source(*first_EI, cityMap) == Reno){
-
-                std::cout << "inside if statement" << std::endl;
                 List<Edge> newPath;
-                std::cout << "created list" << std::endl;
                 
                 newPath.insert(0, newEdge);
 
-                std::cout << "inserted into newPath list" << std::endl;
-
-                std::cout << "inProgress length: " << inProgress.getLength() << std::endl;
-
                 inProgress.insert( inProgress.getLength() , newPath);
 
-                std::cout << "inserted into inProgress list" << std::endl;
-
-                std::cout << "inside - end of if statement" << std::endl;
             }
 
-            std::cout << "After if statement" << std::endl;
         }
     //making the paths
 
         std::cout << "start of while loops" << std::endl;
 
         while (!inProgress.isEmpty()){ 
+
+            std::cout << "inside while loop" << std::endl;
+
             //sets size for only the original paths, not the new added ones
             int size = inProgress.getLength();
             //adds all other possible paths
+
+            std::cout << "before for loop" << std::endl;
             for(int i = 0; i < size; i++){
+                std::cout << "inside for loop time: " << i << std::endl;
+
                 List<Edge> Current_route = inProgress.getEntry(i);
                 Edge last_edge = Current_route.getEntry(Current_route.getLength());
                 int current_city = target(last_edge, cityMap);

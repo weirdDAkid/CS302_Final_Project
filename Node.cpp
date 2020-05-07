@@ -26,8 +26,6 @@ void Node<T>::setData(T & Data){
 }
 template <class T>
 void Node<T>::setNext(Node<T> * Point){
-
-    std::cout << "inside Node setNext func" << std::endl;
     next = Point;
 }
 template <class T>
