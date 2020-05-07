@@ -69,6 +69,10 @@ T List<T>::insert(const int index, T & item){
             head = temp;
         }
     }
+    else if(index == getLength()){
+        tail->setNext(new Node<T>(item, nullptr));
+        tail = tail->getNext();
+    }
     else{
 
         std::cout << "in 'else' statement" << std::endl;
