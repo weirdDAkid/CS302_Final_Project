@@ -264,7 +264,7 @@ bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput){
     std::cout << "before for loop inside containsEdge" << std::endl;
     for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){ 
         std::cout << "inside for loop" << std::endl;
-        if(*EI.first == edgeInput){
+        if((*EI.first) == edgeInput){
             std::cout << "inside if statement inside containsEdge" << std::endl;
             edgeExists = 1;
         }
