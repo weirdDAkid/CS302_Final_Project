@@ -121,6 +121,8 @@ int main(){
                 std::cout << "Inside for statement, time #" << i << std::endl;
                 List<Edge> Current_route = inProgress.getEntry(i);
                 Edge last_edge = Current_route.getEntry(Current_route.getLength());
+
+                std::cout << "created last_edge" << std::endl;
                 int current_city = target(last_edge, cityMap);
 
                 std::cout << "before next for statement (with num connections)" << std::endl;
