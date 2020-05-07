@@ -112,7 +112,7 @@ int main(){
 
             //std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
-            for(int i = 0; i < size; i++){
+            for(int i = 0; i < 5; i++){
 
                 std::cout << "inProgress.size() original: " << size << std::endl;
                 std::cout << "updating inProgres.size(): " << inProgress.size() << std::endl;
