@@ -278,6 +278,8 @@ bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge &edgeInp
         temp = *entryIt;
 
         if( temp == edgeInput ){
+
+            std::cout << "containsEdge if statement" << std::endl;
             edgeExists = 1;
         }
     }
