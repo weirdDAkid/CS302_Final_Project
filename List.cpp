@@ -51,7 +51,7 @@ T List<T>::insert(const int index, T & item){
     if(index == 0){
 
         if(itemCount == 0){
-            head = new Node<T>(item, nullptr);
+            head = new Node<T>(item);
             tail = head;
         }
         else{
@@ -74,12 +74,9 @@ T List<T>::insert(const int index, T & item){
 
         std::cout << "before setNext func" << std::endl;
 
-        Node<T> *tempNode;
+        Node<T> *tempNode = new Node<T>(item);
 
-        std::cout << "created tempNode" << std::endl;
-        tempNode->setData(item);
-
-        std::cout << "inserted item" << std::endl;
+        std::cout << "created tempNode and inserted item" << std::endl;
         tempNode->setNext(hold2);
 
         std::cout << "finished creating new 'temp Node' " << std::endl;
