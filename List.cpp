@@ -25,8 +25,11 @@ List<T>::List(const List<T> & other){
         while( currOther != NULL ){
             Node<T> *newNodePtr = new Node<T> ( currOther->getData(), currOther->getNext() );
             index->setNext( newNodePtr );
-            index = index->getNext();
             currOther = currOther->getNext();
+            if(currOther == NULL){
+                tail = index;
+            }
+            index = index->getNext();
         }
     }
 
