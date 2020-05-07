@@ -94,13 +94,20 @@ int main(){
         std::cout << "First for loop" << std::endl;
 
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
+
+            std::cout << "Running for loop" << std::endl;
+
             edge_iterator first_EI = EI.first; 
             Edge newEdge = *first_EI;
+
+            std::cout << "right before if statement" << std::endl;
             if(source(*first_EI, cityMap) == Reno){
                 List<Edge> newPath;
                 newPath.insert(0, newEdge);
                 inProgress.insert(ind, newPath);
             }
+
+            std::cout << "After if statement" << std::endl;
         }
     //making the paths
 
