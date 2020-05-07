@@ -89,7 +89,6 @@ int main(){
         std::cout << "Beginning of routes with first iterator being used" << std::endl;
 
         std::pair<edge_iterator, edge_iterator> EI;
-        int ind = 0;
 
         std::cout << "First for loop" << std::endl;
 
@@ -110,7 +109,7 @@ int main(){
                 newPath.insert(0, newEdge);
 
                 std::cout << "inserted into newPath list" << std::endl;
-                inProgress.insert(ind, newPath);
+                inProgress.insert( inProgress.getLength() , newPath);
 
                 std::cout << "inserted into inProgress list" << std::endl;
 
