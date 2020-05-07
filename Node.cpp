@@ -30,6 +30,7 @@ void Node<T>::setNext(Node<T> * Point){
 }
 template <class T>
 T Node<T>::getData(){
+    std::cout << "inside getData class" << std::endl;
     return data;
 }
 template <class T>
