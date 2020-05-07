@@ -61,10 +61,14 @@ T List<T>::insert(const int index, T & item){
     if(index == 0){
 
         if(itemCount == 0){
+            std::cout << "if statement" << std::endl;
+
             head = new Node<T>(item, nullptr);
             tail = head;
         }
         else{
+            std::cout << "else statement" << std::endl;
+
             Node<T> *temp = new Node<T>(item, head);
             head = temp;
         }
