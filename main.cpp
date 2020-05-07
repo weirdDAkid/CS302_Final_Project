@@ -135,7 +135,7 @@ int main(){
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
                     //I am not allowing a path to go over the same edge twice, this checks that condition
                     std::cout << "before if statement which checks if an edge has been gone over" << std::endl;
-                    if(!(containsEdge(cityMap, Current_route, next_edge))){
+                    if(!(containsEdge(cityMap, Current_route, next_edge)){
 
                         std::cout << "inside that ^^ if statement" << std::endl;
                         List<Edge> duplicate(Current_route);
