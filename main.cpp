@@ -311,7 +311,7 @@ bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
     }
 
     //Checks the second value of the last edge for match to city
-    if( target(temp, cityMap) == city){
+    if(target(temp, cityMap) == city){
         visitedCity = 1;
     }
 
