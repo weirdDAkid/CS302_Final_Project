@@ -252,6 +252,10 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 
     //if num > 1, iterates through the edges, incrementing when it hits edges belonging to city
     //once it reaches the __'th edge it will return that edge
+    if(num <= 0){
+        std::cout << "inserting num <= 0 into connectionNum" << std::endl;
+    }
+    
     int i = 0;
     while( (i < num) || (EI.first != EI.second) ){
         edge_iterator first_EI = EI.first; 
