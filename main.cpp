@@ -152,6 +152,7 @@ int main(){
                 else{
                     inProgress.remove(i);
                 }
+                std::cout << "end of while loop" << std::endl;
             }
             int index = 0;
             while(index != inProgress.getLength()){
