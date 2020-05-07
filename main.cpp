@@ -122,7 +122,7 @@ int main(){
                 List<Edge> Current_route = inProgress.getEntry(i);
 
                 std::cout << "created current_route" << std::endl;
-                Edge last_edge = Current_route.getEntry(Current_route.getLength());
+                Edge last_edge = Current_route.getEntry(Current_route.getLength()-1);
 
                 std::cout << "created last_edge" << std::endl;
                 int current_city = target(last_edge, cityMap);
