@@ -118,7 +118,7 @@ int main(){
                 
                 std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
                 for(int j = 0; j < i; j++){
-                    entryIt ++;
+                    entryIt++;
                 }
                 std::list<Edge> Current_route = *entryIt;
 
