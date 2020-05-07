@@ -51,7 +51,7 @@ T List<T>::insert(const int index, T & item){
     if(index == 0){
 
         if(itemCount == 0){
-            head = new Node<T>(item);
+            head = new Node<T>(item, nullptr);
             tail = head;
         }
         else{
