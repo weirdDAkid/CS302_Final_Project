@@ -147,6 +147,7 @@ int main(){
                     Current_route.push_back(next_edge);
                 }
                 else{
+                    std::cout << "removing items from inProgress" << std::endl;
                     inProgress.remove(Current_route);
                 }
                 std::cout << "end of for for all possible paths loop" << std::endl;
@@ -178,6 +179,7 @@ int main(){
                     printRoute(cityMap, current, myFile);
                     myFile << "Length: " << routeLength << std::endl;
                     */
+                   std::cout << "removing items after adding them to the final list" << std::endl;
 
                     inProgress.remove(current);
                 }
