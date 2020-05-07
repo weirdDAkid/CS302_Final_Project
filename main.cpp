@@ -140,7 +140,7 @@ int main(){
                         std::cout << "inside that ^^ if statement" << std::endl;
                         List<Edge> duplicate(Current_route);
                         std::cout << "duplciate Edge created" << std::endl;
-                        duplicate.insert(duplicate.getLength()-1, next_edge);
+                        duplicate.insert(duplicate.getLength(), next_edge);
                         std::cout << "duplicate.insert created" << std::endl;
                         inProgress.insert(inProgress.getLength(), duplicate);
 
