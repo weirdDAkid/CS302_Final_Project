@@ -255,17 +255,17 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     return *EI.first;
 }
 
-//tells if graph contians a certain edge
-bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput){
+//tells if list contians a certain edge
+bool containsEdge(DirectedGraph &cityMap,  List<Edge> &route, Edge &edgeInput){
     bool edgeExists = 0;
 
-    std::pair<edge_iterator, edge_iterator> EI;
+    //Iterates through Route list and checks each edge for a match
+    Edge temp;
+    for(int i = 0; i < route.getLength(); ++i){
+        temp = route.getEntry(i);
 
-    std::cout << "before for loop inside containsEdge" << std::endl;
-    for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){ 
-        std::cout << "inside for loop" << std::endl;
-        if((*EI.first) == edgeInput){
-            std::cout << "inside if statement inside containsEdge" << std::endl;
+        //If the city is found, sets edgeExists to true
+        if( temp == edgeInput ){
             edgeExists = 1;
         }
     }
