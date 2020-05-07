@@ -148,7 +148,7 @@ int main(){
                 Edge next_edge = connectionNum__(cityMap, current_city, 0);
                 //same check case as earlier
                 std::cout << "Before if statements about checking for duplicate case" << std::endl;
-                if(!(containsEdge(cityMap, next_edge))){
+                if(!(containsEdge(cityMap, Current_route, next_edge))){
                     Current_route.insert(Current_route.getLength()-1, next_edge);
                 }
                 else{
