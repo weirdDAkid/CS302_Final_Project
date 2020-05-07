@@ -147,7 +147,7 @@ int main(){
                 //same check case as earlier
                 std::cout << "Before if statements about checking for duplicate case" << std::endl;
                 if(!(containsEdge(cityMap, next_edge))){
-                    Current_route.insert(Current_route.getLength(), next_edge);
+                    Current_route.insert(Current_route.getLength()-1, next_edge);
                 }
                 else{
                     inProgress.remove(i);
