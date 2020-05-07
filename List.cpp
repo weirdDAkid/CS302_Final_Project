@@ -21,8 +21,9 @@ List<T>::List(const List<T> & other){
 
         Node<T> *index = head;
         Node<T> *currOther = other.head->getNext();
+        int i = 0;
 
-        while( currOther ){
+        while( currOther && i < itemCount){
             std::cout << "heckin copy constructer" << std::endl;
             Node<T> *newNodePtr = new Node<T> ( currOther->getData(), currOther->getNext() );
             index->setNext( newNodePtr );
@@ -31,6 +32,7 @@ List<T>::List(const List<T> & other){
                 tail = index;
             }
             index = index->getNext();
+            i++;
         }
     }
 
@@ -107,6 +109,7 @@ T List<T>::insert(const int index, T & item){
 
         std::cout << "end of 'else' statement" << std::endl;
     }
+    tail->setNext(nullptr);
     itemCount++;
     return item;
 }
