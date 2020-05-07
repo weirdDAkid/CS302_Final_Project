@@ -102,9 +102,13 @@ int main(){
 
             std::cout << "right before if statement" << std::endl;
             if(source(*first_EI, cityMap) == Reno){
+
+                std::cout << "inside if statement" << std::endl;
                 List<Edge> newPath;
                 newPath.insert(0, newEdge);
                 inProgress.insert(ind, newPath);
+
+                std::cout << "inside - end of if statement" << std::endl;
             }
 
             std::cout << "After if statement" << std::endl;
