@@ -271,14 +271,12 @@ bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge &edgeInp
 
     //Iterates through Route list and checks each edge for a match
     Edge temp;
-    for(int i = 0; i < route.size(); ++i){
-        std::list<Edge>::iterator entryIt = route.begin();
-        for(int j = 0; j < i; j++){
-            entryIt ++;
-        }
+
+    std::list<Edge>::iterator entryIt;
+
+    for(entryIt = route.begin(); entryIt != route.end(); entryIt++){
         temp = *entryIt;
 
-        //If the city is found, sets edgeExists to true
         if( temp == edgeInput ){
             edgeExists = 1;
         }
