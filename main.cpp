@@ -110,7 +110,7 @@ int main(){
             //sets size for only the original paths, not the new added ones
             int size = inProgress.size();
 
-            std::cout << "before for statement (inside while loop)" << std::endl;
+            //std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
             for(int i = 0; i < size; i++){
 
@@ -122,13 +122,13 @@ int main(){
                 }
                 std::list<Edge> Current_route = *entryIt;
                 
-                std::cout << "created current_route" << std::endl;
+                //std::cout << "created current_route" << std::endl;
                 Edge last_edge = Current_route.back();
 
-                std::cout << "created last_edge" << std::endl;
+                //std::cout << "created last_edge" << std::endl;
                 int current_city = target(last_edge, cityMap);
 
-                std::cout << "before next for statement (with num connections)" << std::endl;
+                //std::cout << "before next for statement (with num connections)" << std::endl;
 
                 std::cout << "number of connections: " << numConnections(cityMap, current_city) << std::endl;
 
@@ -140,9 +140,9 @@ int main(){
 
                         std::cout << "inside that ^^ if statement" << std::endl;
                         std::list<Edge> duplicate(Current_route);
-                        std::cout << "duplciate Edge created" << std::endl;
+                        //std::cout << "duplciate Edge created" << std::endl;
                         duplicate.push_back(next_edge);
-                        std::cout << "duplicate.insert created" << std::endl;
+                        //std::cout << "duplicate.insert created" << std::endl;
                         inProgress.push_back(duplicate);
 
                         std::cout << "after insert functions" << std::endl;
