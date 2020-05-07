@@ -135,15 +135,15 @@ T List<T>::getEntry(const int index){
         cout << "list get entry else statement" << endl;
         Node<T> * hold = head;
         for(int i = 0; i < index; i++){
-            //cout << "list get entry for loop" << endl;
+            cout << "list get entry for loop" << endl;
             hold = hold->getNext();
-            //cout << "got next" << endl;
+            cout << "got next" << endl;
         }
-        //cout << "completed for loop" << endl;
+        cout << "completed for loop" << endl;
         T to_return;
-        //cout << "construced to return" << endl;
+        cout << "construced to return" << endl;
         to_return = hold->getData();
-        //cout << "constructed to_return" << endl;
+        cout << "constructed to_return" << endl;
         return to_return;
     }
 }
