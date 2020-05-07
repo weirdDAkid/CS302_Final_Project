@@ -70,13 +70,19 @@ T List<T>::insert(const int index, T & item){
         }
 
         std::cout << "insert func - after the for loop" << std::endl;
-        Node<T> * hold2 = hold->getNext();
+        Node<T> *hold2 = hold->getNext();
 
         std::cout << "before setNext func" << std::endl;
 
-        Node<T> tempNode = new Node<T>(item, hold2);
+        Node<T> *tempNode = new Node<T>();
 
-        std::cout << "created new 'temp Node' " << std::endl;
+        std::cout << "created tempNode" << std::endl;
+        tempNode->setItem(item);
+
+        std::cout << "inserted item" << std::endl;
+        tempNode->setNext(hold2);
+
+        std::cout << "finished creating new 'temp Node' " << std::endl;
 
         hold->setNext( tempNode );
 
