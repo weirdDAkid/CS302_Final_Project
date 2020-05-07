@@ -37,10 +37,13 @@ void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os);
 int main(){
 
     //making graph
+        std::cout << "Before we even make the graph" << std::endl;
 
         DirectedGraph cityMap;
 
         int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
+
+        std::cout << "Before we add edges" << std::endl;
 
         //edges will be different going in the different directions
 
@@ -70,18 +73,22 @@ int main(){
 
     //making the list of lists
 
+        std::cout << "Before the list of lists" << std::endl;
+
         List<List<Edge>> inProgress;
         List<List<Edge>> routes;
         List<int> lengths;
 
     //Opening output file
 
+        std::cout << "Opening a file" << std::endl;
         std::ofstream myFile;
         myFile.open("ListOfAllRoutes.txt");
 
     //the beginning of the routes
 
         std::pair<edge_iterator, edge_iterator> EI;
+
 
         for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
 
@@ -94,7 +101,6 @@ int main(){
                 newPath.insert(0, newEdge);
 
                 inProgress.insert( inProgress.getLength() , newPath);
-
             }
 
         }
@@ -103,17 +109,14 @@ int main(){
         std::cout << "start of while loops" << std::endl;
 
         while (!inProgress.isEmpty()){ 
-
-            std::cout << "inside while loop" << std::endl;
-
             //sets size for only the original paths, not the new added ones
             int size = inProgress.getLength();
+
+            std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
-
-            std::cout << "before for loop" << std::endl;
             for(int i = 0; i < size; i++){
-                std::cout << "inside for loop time: " << i << std::endl;
 
+                std::cout << "Inside for statement, time #" << i << std::endl;
                 List<Edge> Current_route = inProgress.getEntry(i);
                 Edge last_edge = Current_route.getEntry(Current_route.getLength());
                 int current_city = target(last_edge, cityMap);
