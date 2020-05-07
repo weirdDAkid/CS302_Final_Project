@@ -96,7 +96,7 @@ int main(){
                 
                 newPath.push_front(newEdge);
 
-                std::cout << "Before inProgress, inProgress length: " << inProgress.size() << std::endl;
+                //std::cout << "Before inProgress, inProgress length: " << inProgress.size() << std::endl;
 
                 inProgress.push_back(newPath);
             }
@@ -138,7 +138,7 @@ int main(){
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
                     std::cout << "Next-Edge value: " << next_edge << std::endl;
                     //I am not allowing a path to go over the same edge twice, this checks that condition
-                    std::cout << "before if statement which checks if an edge has been gone over" << std::endl;
+                    //std::cout << "before if statement which checks if an edge has been gone over" << std::endl;
                     if(!(containsEdge(cityMap, Current_route, next_edge))){
                         std::cout << "inside that ^^ if statement" << std::endl;
                         std::list<Edge> duplicate(Current_route);
