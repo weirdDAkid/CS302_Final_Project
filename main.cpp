@@ -100,7 +100,7 @@ int main(){
                 
                 newPath.insert(0, newEdge);
 
-                inProgress.getLength();
+                std::cout << "Before inProgress, inProgress length: " << inProgress.getLength() << std::endl;
 
                 inProgress.insert( inProgress.getLength() , newPath);
             }
