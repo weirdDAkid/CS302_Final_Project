@@ -15,16 +15,22 @@ List<T>::List(){
 }
 template <class T>
 List<T>::List(const List<T> & other){
-    head = other.head;
-    tail = other.tail;
-    itemCount = other.itemCount;
-    Node<T> * hold = head;
-    Node<T> * otherHold = other.head;
-    while(otherHold->getNext() != nullptr){
-        hold = otherHold;
-        hold = hold->getNext();
-        otherHold = otherHold->getNext();
+
+    if( !other.isEmpty() ){
+        head = new Node<T>( other.head->getData(), other.head->getNext() );
+
+        Node<T> *index = pFirst;
+        Node<T> *currOther = other.pFirst->getNext();
+
+        while( currOther != NULL ){
+            Node<T> *newNodePtr = new Node<T> ( currOther->getData(), currOther->getNext() );
+            index->setNext( newNodePtr );
+            index = index->getNext();
+            currOther = currOther->getNext();
+        }
     }
+
+    itemCount = other.itemCount;
 }
 template <class T>
 List<T>::~List(){
