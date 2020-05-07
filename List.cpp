@@ -53,10 +53,14 @@ T List<T>::insert(const int index, T & item){
         std::cout << "in index==0 if statement" << std::endl;
 
         if(itemCount == 0){
+            std::cout << "insert func - itemcount == 0" << std::endl;
+
             head = new Node<T>(item, nullptr);
             tail = head;
         }
         else{
+            std::cout << "insert func - itemcount != 0" << std::endl;
+
             head = new Node<T>(item, head);
         }
     }
