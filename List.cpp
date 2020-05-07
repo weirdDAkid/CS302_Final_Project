@@ -132,7 +132,7 @@ T List<T>::getEntry(const int index){
         return to_return;
     }
     else{
-        //cout << "list get entry else statement" << endl;
+        cout << "list get entry else statement" << endl;
         Node<T> * hold = head;
         for(int i = 0; i < index; i++){
             //cout << "list get entry for loop" << endl;
