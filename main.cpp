@@ -129,6 +129,8 @@ int main(){
                 std::cout << "number of connections: " << numConnections(cityMap, current_city) << std::endl;
 
                 for(int j = 1; j < numConnections(cityMap, current_city) ; j++){
+
+                    std::cout << "numConnections for loop time #" << j << std::endl;
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
                     std::cout << "Next-Edge value: " << next_edge << std::endl;
                     //I am not allowing a path to go over the same edge twice, this checks that condition
