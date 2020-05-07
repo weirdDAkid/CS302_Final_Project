@@ -19,8 +19,8 @@ List<T>::List(const List<T> & other){
     if( !other.isEmpty() ){
         head = new Node<T>( other.head->getData(), other.head->getNext() );
 
-        Node<T> *index = pFirst;
-        Node<T> *currOther = other.pFirst->getNext();
+        Node<T> *index = head;
+        Node<T> *currOther = other.head->getNext();
 
         while( currOther != NULL ){
             Node<T> *newNodePtr = new Node<T> ( currOther->getData(), currOther->getNext() );
