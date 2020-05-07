@@ -70,8 +70,7 @@ T List<T>::insert(const int index, T & item){
         else{
             std::cout << "else statement" << std::endl;
 
-            Node<T> *temp = new Node<T>(item, head);
-            head = temp;
+            head = new Node<T>(item, head);
         }
     }
     else if(index == getLength()){
