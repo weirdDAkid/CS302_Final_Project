@@ -28,7 +28,7 @@ List<T>::List(const List<T> & other){
             Node<T> *newNodePtr = new Node<T> ( currOther->getData(), currOther->getNext() );
             index->setNext( newNodePtr );
             currOther = currOther->getNext();
-            if(!currOther){
+            if( currOther == nullptr){
                 tail = index;
             }
             index = index->getNext();
@@ -72,8 +72,7 @@ T List<T>::insert(const int index, T & item){
         else{
             std::cout << "else statement" << std::endl;
 
-            Node<T> *temp = new Node<T>(item, head);
-            head = temp;
+            head = new Node<T>(item, head);
         }
     }
     else if(index == getLength()){
