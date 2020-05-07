@@ -261,9 +261,8 @@ bool containsEdge(DirectedGraph &cityMap, Edge &edgeInput){
 
     std::pair<edge_iterator, edge_iterator> EI;
 
-    for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){
-        edge_iterator first_EI = EI.first; 
-        if(*first_EI == edgeInput){
+    for(EI = edges(cityMap); EI.first != EI.second; ++EI.first){ 
+        if(*EI.first == edgeInput){
             edgeExists = 1;
         }
     }
