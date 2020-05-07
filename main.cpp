@@ -262,6 +262,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     std::cout << "before while loop in connectionNum" << std::endl;
     int i = 0;
     while( (i < num) || (EI.first != EI.second) ){
+        std::cout << "inside while loop in connectionNum" << std::endl;
         edge_iterator first_EI = EI.first; 
         if(source(*first_EI, cityMap) == city){
             ++i;
