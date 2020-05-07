@@ -109,6 +109,9 @@ int main(){
                 newPath.insert(0, newEdge);
 
                 std::cout << "inserted into newPath list" << std::endl;
+
+                std::cout << "inProgress length: " << inProgress.getLength() << std::endl;
+
                 inProgress.insert( inProgress.getLength() , newPath);
 
                 std::cout << "inserted into inProgress list" << std::endl;
