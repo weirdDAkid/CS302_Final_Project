@@ -249,6 +249,8 @@ int numConnections(DirectedGraph &cityMap, int city){
 
 //returns the __'th edge that starts from the inputted city
 Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
+    std::cout << "inside connectionNum" << std::endl;
+
     std::pair<edge_iterator, edge_iterator> EI;
     EI = edges(cityMap);
 
@@ -257,7 +259,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     if(num <= 0){
         std::cout << "inserting num <= 0 into connectionNum" << std::endl;
     }
-    
+    std::cout << "before while loop in connectionNum" << std::endl;
     int i = 0;
     while( (i < num) || (EI.first != EI.second) ){
         edge_iterator first_EI = EI.first; 
@@ -265,6 +267,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
             ++i;
 
             if( i == num ){
+                std::cout << "found 'num' in connectionNum" << std::endl;
                 return *first_EI;
             }
         }
