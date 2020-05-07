@@ -37,9 +37,13 @@ void printRoute(DirectedGraph &cityMap, List<Edge> &route, std::ostream &os);
 int main(){
 
     //making graph
+        std::cout << "Before we even make the graph" << std::endl;
+
         DirectedGraph cityMap;
 
         int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
+
+        std::cout << "Before we add edges" << std::endl;
 
         //edges will be different going in the different directions
 
@@ -68,6 +72,9 @@ int main(){
 
 
     //making the list of lists
+
+        std::cout << "Before the list of lists" << std::endl;
+
         List<List<Edge>> inProgress;
         List<List<Edge>> routes;
         List<int> lengths;
