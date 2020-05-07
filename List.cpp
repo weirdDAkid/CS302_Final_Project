@@ -74,7 +74,7 @@ T List<T>::insert(const int index, T & item){
 
         std::cout << "before setNext func" << std::endl;
 
-        Node<T> *tempNode = new Node<T>();
+        Node<T> *tempNode;
 
         std::cout << "created tempNode" << std::endl;
         tempNode->setItem(item);
