@@ -217,7 +217,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     }
     
     //if it reaches that point, there are < "num" number of edges corresponding to the city
-    return EI.first;
+    return *EI.first;
 }
 
 //tells if graph contians a certain edge
