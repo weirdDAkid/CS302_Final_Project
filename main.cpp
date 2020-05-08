@@ -19,7 +19,7 @@ int numConnections(DirectedGraph &cityMap, int city);
 Edge connectionNum__(DirectedGraph &cityMap, int city, int num);
 
 //tells if graph contians a certain edge
-bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge &edgeInput);
+bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInput);
 
 //tells if a city has been visited
 bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route);
@@ -149,6 +149,9 @@ int main(){
 
                         std::cout << "end of ^^ if statement" << std::endl;
                     }
+                    else{
+                        std::cout << "does not add" << std::endl;
+                    }
 
                     std::cout << "end of numConnections for loop" << std::endl;
                 }
@@ -262,8 +265,8 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
     }
     std::cout << "before while loop in connectionNum" << std::endl;
     int i = 0;
-    while( (i < num) || (EI.first != EI.second) ){
-        std::cout << "inside while loop in connectionNum" << std::endl;
+    while( (i < num) && (EI.first != EI.second) ){
+        //std::cout << "inside while loop in connectionNum" << std::endl;
         edge_iterator first_EI = EI.first; 
         if(source(*first_EI, cityMap) == city){
             ++i;
@@ -282,25 +285,20 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 }
 
 //tells if list contians a certain edge
-bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge &edgeInput){
-    bool edgeExists = 0;
+bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInput){
 
     //Iterates through Route list and checks each edge for a match
     Edge temp;
 
-    std::list<Edge>::iterator entryIt;
-
-    for(entryIt = route.begin(); entryIt != route.end(); entryIt++){
-        temp = *entryIt;
-
-        if( temp == edgeInput ){
-
-            std::cout << "containsEdge if statement" << std::endl;
-            edgeExists = 1;
-        }
+    std::list<Edge>::iterator theIt;
+    
+    theIt = find(route.begin(), route.end(), edgeInput);
+    if(theIt != route.end()){
+        return 1;
     }
-
-    return edgeExists;
+    else{
+        return 0;
+    }
 }
 
 //tells if a city has been visited
