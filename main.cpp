@@ -176,6 +176,7 @@ int main(){
                 max++;
             }
             std::cout << "outside of for loop" << std::endl;
+
             int index = 0;
             while(index != inProgress.size()){
 
@@ -188,6 +189,7 @@ int main(){
 
                 Edge most_recent = current.back();
                 int city = target(most_recent, cityMap);
+                int backToReno = 0;
 
                 std::cout << "right before if statement about city==Reno and visitedAll" << std::endl;
                 if(visitedAll(cityMap, current)){
@@ -208,7 +210,26 @@ int main(){
 
                         currentWeight = EdgeWeightMap(Current_route);
 
-                        routeLength = routeLength + currentWeight;
+                        switch(city){
+                            case 1:
+                                std::cout << "oopsies Reno" << std::endl;
+                            case 2:
+                                backToReno = 218;
+                                break;
+                            case 3:
+                                backToReno = 518;
+                                break;
+                            case 4:
+                                backToReno = 704;
+                                break;
+                            case 5:
+                                backToReno = 439;
+                                break;
+                            default:
+                                os << "Oopsies";
+                        }
+
+                        routeLength = routeLength + currentWeight + backToReno;
 
                         std::cout << "currentWeight: " << currentWeight << " , routeLength: " << routeLength << std::endl;
                     }
@@ -423,22 +444,24 @@ void printRoute(DirectedGraph &cityMap, std::list<Edge> &route, std::ostream &os
 
     //Prints out final city on route
     switch( target(temp, cityMap) ){
-            case 1:
-                os << "Reno" << std::endl;
-                break;
-            case 2:
-                os << "San Francisco" << std::endl;
-                break;
-            case 3:
-                os << "Salt Lake City" << std::endl;
-                break;
-            case 4:
-                os << "Seattle" << std::endl;
-                break;
-            case 5:
-                os << "Las Vegas" << std::endl;
-                break;
-            default:
-                os << "Oopsies" << std::endl;
-        }
+        case 1:
+            os << "Oopsies? reno" << std::endl;
+            break;
+        case 2:
+            os << "San Francisco";
+            break;
+        case 3:
+            os << "Salt Lake City";
+            break;
+        case 4:
+            os << "Seattle";
+            break;
+        case 5:
+            os << "Las Vegas";
+            break;
+        default:
+            os << "Oopsies" << std::endl;
+    }
+
+    os << ", Reno" << std::endl;
 }
