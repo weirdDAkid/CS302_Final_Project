@@ -37,36 +37,36 @@ int main(){
 
         DirectedGraph cityMap;
 
-        boost::property_map<DirectedGraph, boost::edge_weight_t>::type EdgeWeightMap = get(boost::edge_weight, cityMap);
-
         int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
 
         std::cout << "Before we add edges" << std::endl;
 
         //edges will be different going in the different directions
 
-        boost::add_edge(Reno, SanFran, 218, cityMap);
-        boost::add_edge(Reno, SaltLake, 518, cityMap);
-        boost::add_edge(Reno, Seattle, 704, cityMap);
-        boost::add_edge(Reno, Vegas, 439, cityMap);
+        boost::add_edge(Reno, SanFran, EdgeWeightProperty(218), cityMap);
+        boost::add_edge(Reno, SaltLake, EdgeWeightProperty(518), cityMap);
+        boost::add_edge(Reno, Seattle, EdgeWeightProperty(704), cityMap);
+        boost::add_edge(Reno, Vegas, EdgeWeightProperty(439), cityMap);
 
-        boost::add_edge(SanFran, Reno, 218, cityMap);
-        boost::add_edge(SanFran, Seattle, 811, cityMap);
-        boost::add_edge(SanFran, Vegas, 564, cityMap);
+        boost::add_edge(SanFran, Reno, EdgeWeightProperty(218), cityMap);
+        boost::add_edge(SanFran, Seattle, EdgeWeightProperty(811), cityMap);
+        boost::add_edge(SanFran, Vegas, EdgeWeightProperty(564), cityMap);
 
-        boost::add_edge(SaltLake, Reno, 518, cityMap);
-        boost::add_edge(SaltLake, Seattle, 829, cityMap);
-        boost::add_edge(SaltLake, Vegas, 421, cityMap);
+        boost::add_edge(SaltLake, Reno, EdgeWeightProperty(518), cityMap);
+        boost::add_edge(SaltLake, Seattle, EdgeWeightProperty(829), cityMap);
+        boost::add_edge(SaltLake, Vegas, EdgeWeightProperty(421), cityMap);
 
-        boost::add_edge(Seattle, Reno, 704, cityMap);
-        boost::add_edge(Seattle, SanFran, 811, cityMap);
-        boost::add_edge(Seattle, SaltLake, 829, cityMap);
-        boost::add_edge(Seattle, Vegas, 1118, cityMap);
+        boost::add_edge(Seattle, Reno, EdgeWeightProperty(704), cityMap);
+        boost::add_edge(Seattle, SanFran, EdgeWeightProperty(811), cityMap);
+        boost::add_edge(Seattle, SaltLake, EdgeWeightProperty(829), cityMap);
+        boost::add_edge(Seattle, Vegas, EdgeWeightProperty(1118), cityMap);
 
-        boost::add_edge(Vegas, Reno, 439, cityMap);
-        boost::add_edge(Vegas, SanFran, 564, cityMap);
-        boost::add_edge(Vegas, SaltLake, 1118, cityMap);
-        boost::add_edge(Vegas, Seattle, 421, cityMap);
+        boost::add_edge(Vegas, Reno, EdgeWeightProperty(439), cityMap);
+        boost::add_edge(Vegas, SanFran, EdgeWeightProperty(564), cityMap);
+        boost::add_edge(Vegas, SaltLake, EdgeWeightProperty(1118), cityMap);
+        boost::add_edge(Vegas, Seattle, EdgeWeightProperty(421), cityMap);
+
+        boost::property_map<DirectedGraph, boost::edge_weight_t>::type EdgeWeightMap = get(boost::edge_weight, cityMap);
 
 
     //making the list of lists
