@@ -190,7 +190,7 @@ int main(){
                 int city = target(most_recent, cityMap);
 
                 std::cout << "right before if statement about city==Reno and visitedAll" << std::endl;
-                if(city == Reno && visitedAll(cityMap, current)){
+                if(visitedAll(cityMap, current)){
 
                     routes.push_back(current);
                     //calculate length and add that to that list
