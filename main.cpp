@@ -11,7 +11,7 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 //typedef std::pair<int, int> Edge;
 typedef boost::graph_traits<DirectedGraph>::edge_descriptor Edge;
-typedef boost::property_traits<DirectedGraph>::EdgeWeightProperty WeightPropertyType;
+typedef boost::property_traits<DirectedGraph>::read_write_property_map_tag WeightPropertyType;
 typedef boost::property_map<DirectedGraph, boost::edge_weight_t>::WeightPropertyType EdgeWeight;
 
 //returns number of edges that depart from iputted city
