@@ -11,6 +11,7 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 //typedef std::pair<int, int> Edge;
 typedef boost::graph_traits<DirectedGraph>::edge_descriptor Edge;
+typedef boost::property_map<DirectedGraph, EdgeWeightProperty>::int EdgeWeight;
 
 //returns number of edges that depart from iputted city
 int numConnections(DirectedGraph &cityMap, int city);
@@ -188,18 +189,26 @@ int main(){
                     routes.push_back(current);
                     //calculate length and add that to that list
                     
+
+                    int currentWeight = 0;
                     int routeLength = 0;
                     for(int k = 0; k < current.size(); k++){
 
-                        std::list<Edge>::iterator entryIt = current.begin();
+                        std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
                         for(int j = 0; j < k; j++){
                             entryIt++;
                         }
-                        Edge Current_route = *entryIt;
-                        
-                        routeLength = routeLength + EdgeWeightMap[Current_route]
+                        std::list<Edge> Current_route = *entryIt;
+
+                        currentWeight = get(currentWeight, cityMap, Current_route);
+
+                        routeLength = routeLength + currentWeight;
+
+                        std::cout << "currentWeight: " << currentWeight << " , routeLength: " << routeLength << std::endl;
                     }
-                    lengths.push_back(routeLength);
+
+                    std::cout << "Final route length: " << routeLength << std::endl;
+                    lengths.insert(lengths.size(), routeLength);
                     //output route and length to file
                     /*
                     myFile << "Route " << index << ": ";
@@ -296,7 +305,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 }
 
 //tells if list contians a certain edge
-bool containsEdge(DirectedGraph &cityMap, std::list<Edge> &route, Edge edgeInput){
+bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInput){
 
     //Iterates through Route list and checks each edge for a match
 
