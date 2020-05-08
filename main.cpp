@@ -253,12 +253,19 @@ int main(){
    
    //Printing out shortest route to file
         myFile << "Shortest Route: ";
-        printRoute(cityMap, routes.getEntry(smallest_index), myFile);
+
+        std::list<Edge>::iterator entryIt = routes.begin();
+        for(int j = 0; j < smallest_index; j++){
+            entryIt++;
+        }
+        Edge curr_route = *entryIt;
+
+        printRoute(cityMap, curr_route, myFile);
         myFile << "Length: " << smallest_val << " miles" << std::endl;
 
     //Printing out shortest route to screen
         std::cout << "Shortest Route: ";
-        printRoute(cityMap, routes.getEntry(smallest_index), std::cout);
+        printRoute(cityMap, curr_route, std::cout);
         std::cout << "Length: " << smallest_val << " miles" << std::endl;
 
    //Closing file
