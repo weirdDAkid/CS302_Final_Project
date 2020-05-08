@@ -216,11 +216,11 @@ int main(){
                     std::cout << "Final route length: " << routeLength << std::endl;
                     lengths.push_back(routeLength);
                     //output route and length to file
-                    /*
+                    
                     myFile << "Route " << index << ": ";
                     printRoute(cityMap, current, myFile);
                     myFile << "Length: " << routeLength << std::endl;
-                    */
+                    
                    std::cout << "removing items after adding them to the final list" << std::endl;
 
                     inProgress.remove(current);
