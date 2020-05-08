@@ -133,9 +133,6 @@ int main(){
                         inProgress.push_back(duplicate);
                         inProgress.unique();
                     }
-                    else{
-                        std::cout << "does not add" << std::endl;
-                    }
                 }
                 Edge next_edge = connectionNum__(cityMap, current_city, 1);
                 //same check case as earlier
