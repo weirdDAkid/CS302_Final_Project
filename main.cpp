@@ -191,15 +191,15 @@ int main(){
                     int routeLength = 0;
                     for(int k = 0; k < current.size(); k++){
 
-                        std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
-                        for(int j = 0; j < i; j++){
+                        std::list<Edge>::iterator entryIt = current.begin();
+                        for(int j = 0; j < k; j++){
                             entryIt++;
                         }
-                        std::list<Edge> Current_route = *entryIt;
+                        Edge Current_route = *entryIt;
                         
                         routeLength = routeLength + EdgeWeightMap[Current_route]
                     }
-                    lengths.insert(lengths.size(), routeLength);
+                    lengths.push_back(routeLength);
                     //output route and length to file
                     /*
                     myFile << "Route " << index << ": ";
@@ -296,7 +296,7 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 }
 
 //tells if list contians a certain edge
-bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInput){
+bool containsEdge(DirectedGraph &cityMap, std::list<Edge> &route, Edge edgeInput){
 
     //Iterates through Route list and checks each edge for a match
 
