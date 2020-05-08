@@ -169,6 +169,7 @@ int main(){
                     
                 }
                 std::cout << "end of for for all possible paths loop" << std::endl;
+                max++;
             }
             std::cout << "outside of for loop" << std::endl;
             int index = 0;
