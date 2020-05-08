@@ -236,15 +236,21 @@ int main(){
         int smallest_val = lengths.front();
         int smallest_index = 0;
 
-    
         for(int i = 0; i < lengths.size(); i++){
-            if(lengths.getEntry(i) < smallest_val){
+
+            std::list<int>::iterator entryIt = lengths.begin();
+            for(int j = 0; j < i; j++){
+                entryIt++;
+            }
+            int curr_entry = *entryIt;
+
+            if(curr_entry < smallest_val){
                 smallest_val = lengths.getEntry(i);
                 smallest_index = i;
             }
         }
 
-   /*
+   
    //Printing out shortest route to file
         myFile << "Shortest Route: ";
         printRoute(cityMap, routes.getEntry(smallest_index), myFile);
@@ -257,7 +263,7 @@ int main(){
 
    //Closing file
         myFile.close();
-    */
+    
     return 0;
 }
 
