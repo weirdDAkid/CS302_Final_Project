@@ -33,15 +33,10 @@ void printRoute(DirectedGraph &cityMap, std::list<Edge> &route, std::ostream &os
 int main(){
 
     //making graph
-        std::cout << "Before we even make the graph" << std::endl;
 
         DirectedGraph cityMap;
 
         int Reno = 1, SanFran = 2, SaltLake = 3, Seattle = 4, Vegas = 5;
-
-        std::cout << "Before we add edges" << std::endl;
-
-        //edges will be different going in the different directions
 
         boost::add_edge(Reno, SanFran, EdgeWeightProperty(218), cityMap);
         boost::add_edge(Reno, SaltLake, EdgeWeightProperty(518), cityMap);
@@ -71,15 +66,12 @@ int main(){
 
     //making the list of lists
 
-        std::cout << "Before the list of lists" << std::endl;
-
         std::list<std::list<Edge>> inProgress;
         std::list<std::list<Edge>> routes;
         std::list<int> lengths;
 
     //Opening output file
 
-        std::cout << "Opening a file" << std::endl;
         std::ofstream myFile;
         myFile.open("ListOfAllRoutes.txt");
 
@@ -106,7 +98,6 @@ int main(){
         }
     //making the paths
 
-        std::cout << "start of while loops" << std::endl;
         int max = 0;
         while (!inProgress.empty() && max < 120){ 
             //sets size for only the original paths, not the new added ones
@@ -116,12 +107,6 @@ int main(){
             //std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
             for(int i = 0; i < size; i++){
-
-                std::cout << "inProgress.size() original: " << size << std::endl;
-                std::cout << "updating inProgres.size(): " << inProgress.size() << std::endl;
-                std::cout << "max: " << max << std::endl;    
-
-                std::cout << "Inside for statement, time #" << i << std::endl;
                 
                 std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
                 for(int j = 0; j < i; j++){
@@ -134,52 +119,35 @@ int main(){
 
                 int current_city = target(last_edge, cityMap);
 
-                std::cout << "number of connections: " << numConnections(cityMap, current_city) << std::endl;
-
                 int numberOfConnections = numConnections(cityMap, current_city);
 
                 for(int j = 2; j <= numberOfConnections ; j++){
 
-                    std::cout << "numConnections for loop time #" << j << std::endl;
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
-                    std::cout << "Next-Edge value: " << next_edge << std::endl;
                     //I am not allowing a path to go over the same edge twice, this checks that condition
                     //std::cout << "before if statement which checks if an edge has been gone over" << std::endl;
                     if(!(containsEdge(cityMap, Current_route, next_edge))){
-                        std::cout << "inside that ^^ if statement" << std::endl;
                         std::list<Edge> duplicate(Current_route);
                         duplicate.push_back(next_edge);
                         duplicate.unique();
                         inProgress.push_back(duplicate);
                         inProgress.unique();
-
-                        std::cout << "end of ^^ if statement" << std::endl;
                     }
-                    else{
-                        std::cout << "does not add" << std::endl;
-                    }
-                    
-                    std::cout << "end of numConnections for loop" << std::endl;
                 }
                 Edge next_edge = connectionNum__(cityMap, current_city, 1);
                 //same check case as earlier
-                std::cout << "Before if statements about checking for duplicate case" << std::endl;
                 if(containsEdge(cityMap, Current_route, next_edge)){
-                    std::cout << "removing items from inProgress" << std::endl;
                     inProgress.remove(Current_route);
                 }
                 else{
                     Current_route.push_back(next_edge);
                     
                 }
-                std::cout << "end of for for all possible paths loop" << std::endl;
                 max++;
             }
-            std::cout << "outside of for loop" << std::endl;
+
             int index = 0;
             while(index != inProgress.size()){
-
-                std::cout << "inside second while loop, main function time #" << index << std::endl;
                 std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
                 for(int j = 0; j < index; j++){
                     entryIt ++;
@@ -188,8 +156,7 @@ int main(){
 
                 Edge most_recent = current.back();
                 int city = target(most_recent, cityMap);
-
-                std::cout << "right before if statement about city==Reno and visitedAll" << std::endl;
+                int backToReno = 0;
                 if(visitedAll(cityMap, current)){
 
                     routes.push_back(current);
@@ -208,20 +175,34 @@ int main(){
 
                         currentWeight = EdgeWeightMap(Current_route);
 
-                        routeLength = routeLength + currentWeight;
+                        switch(city){
+                            case 1:
+                                std::cout << "oopsies Reno" << std::endl;
+                            case 2:
+                                backToReno = 218;
+                                break;
+                            case 3:
+                                backToReno = 518;
+                                break;
+                            case 4:
+                                backToReno = 704;
+                                break;
+                            case 5:
+                                backToReno = 439;
+                                break;
+                            default:
+                                std::cout << "Oopsies" << std::endl;
+                        }
 
-                        std::cout << "currentWeight: " << currentWeight << " , routeLength: " << routeLength << std::endl;
+                        routeLength = routeLength + currentWeight + backToReno;
                     }
 
-                    std::cout << "Final route length: " << routeLength << std::endl;
                     lengths.push_back(routeLength);
                     //output route and length to file
                     
                     myFile << "Route " << index << ": ";
                     printRoute(cityMap, current, myFile);
                     myFile << "Length: " << routeLength << std::endl;
-                    
-                   std::cout << "removing items after adding them to the final list" << std::endl;
 
                     inProgress.remove(current);
                 }
@@ -291,18 +272,13 @@ int numConnections(DirectedGraph &cityMap, int city){
 
 //returns the __'th edge that starts from the inputted city
 Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
-    std::cout << "inside connectionNum" << std::endl;
-    std::cout << "city: " << city << ", num: " << num << std::endl;
 
     std::pair<edge_iterator, edge_iterator> EI;
     EI = edges(cityMap);
 
     //if num > 1, iterates through the edges, incrementing when it hits edges belonging to city
     //once it reaches the __'th edge it will return that edge
-    if(num <= 0){
-        std::cout << "inserting num <= 0 into connectionNum" << std::endl;
-    }
-    std::cout << "before while loop in connectionNum" << std::endl;
+
     int i = 0;
     while( (i < num) && (EI.first != EI.second) ){
         //std::cout << "inside while loop in connectionNum" << std::endl;
@@ -311,7 +287,6 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
             ++i;
 
             if( i == num ){
-                std::cout << "found 'num' in connectionNum" << std::endl;
                 return *first_EI;
             }
         }
@@ -343,8 +318,6 @@ bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInpu
 bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
     bool visitedCity = 0;
 
-    std::cout << "inside visited func" << std::endl;
-
     //Iterates through Route list and checks the first value of each edge for match to city
     Edge temp;
     for(int i = 0; i < route.size(); ++i){
@@ -356,16 +329,12 @@ bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
 
         //If the city is found, sets visitedCity to true
         if( source(temp, cityMap) == city ){
-
-            std::cout << "inside visited if statement" << std::endl;
             visitedCity = 1;
         }
     }
 
     //Checks the second value of the last edge for match to city
     if(target(temp, cityMap) == city){
-
-        std::cout << "inside 2nd visited if statement" << std::endl;
         visitedCity = 1;
     }
 
@@ -376,12 +345,9 @@ bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
 bool visitedAll(DirectedGraph &cityMap, std::list<Edge> &route){
     bool visitedAllCities = 1;
 
-    std::cout << "in visitedAll func" << std::endl;
-
     //Checks if visited all 5 cities
     for(int i = 1; i <= 5; ++i){
         if( !visited(cityMap, i, route) ){
-            std::cout << "inside if statement in visitedAll func" << std::endl;
             visitedAllCities = 0;
         }
     }
@@ -423,22 +389,24 @@ void printRoute(DirectedGraph &cityMap, std::list<Edge> &route, std::ostream &os
 
     //Prints out final city on route
     switch( target(temp, cityMap) ){
-            case 1:
-                os << "Reno" << std::endl;
-                break;
-            case 2:
-                os << "San Francisco" << std::endl;
-                break;
-            case 3:
-                os << "Salt Lake City" << std::endl;
-                break;
-            case 4:
-                os << "Seattle" << std::endl;
-                break;
-            case 5:
-                os << "Las Vegas" << std::endl;
-                break;
-            default:
-                os << "Oopsies" << std::endl;
-        }
+        case 1:
+            os << "Oopsies? reno" << std::endl;
+            break;
+        case 2:
+            os << "San Francisco";
+            break;
+        case 3:
+            os << "Salt Lake City";
+            break;
+        case 4:
+            os << "Seattle";
+            break;
+        case 5:
+            os << "Las Vegas";
+            break;
+        default:
+            os << "Oopsies" << std::endl;
+    }
+
+    os << ", Reno" << std::endl;
 }
