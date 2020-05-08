@@ -232,18 +232,18 @@ int main(){
         }
 
     //looking for largest
-    /*
+    
         int smallest_val = lengths.front();
         int smallest_index = 0;
-        */
-    /*
-        for(int i = 0; i < lengths.getLength(); i++){
+
+    
+        for(int i = 0; i < lengths.size(); i++){
             if(lengths.getEntry(i) < smallest_val){
                 smallest_val = lengths.getEntry(i);
                 smallest_index = i;
             }
         }
-    */
+
    /*
    //Printing out shortest route to file
         myFile << "Shortest Route: ";
