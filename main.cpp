@@ -178,6 +178,8 @@ int main(){
             std::cout << "outside of for loop" << std::endl;
             int index = 0;
             while(index != inProgress.size()){
+
+                std::cout << "inside second while loop, main function time #" << index << std::endl;
                 std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
                 for(int j = 0; j < index; j++){
                     entryIt ++;
@@ -186,7 +188,10 @@ int main(){
 
                 Edge most_recent = current.back();
                 int city = target(most_recent, cityMap);
+
+                std::cout << "right before if statement about city==Reno and visitedAll" << std::endl;
                 if(city == Reno && visitedAll(cityMap, current)){
+
                     routes.push_back(current);
                     //calculate length and add that to that list
                     
