@@ -245,7 +245,7 @@ int main(){
             int curr_entry = *entryIt;
 
             if(curr_entry < smallest_val){
-                smallest_val = lengths.getEntry(i);
+                smallest_val = curr_entry;
                 smallest_index = i;
             }
         }
