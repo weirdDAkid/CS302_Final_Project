@@ -106,9 +106,10 @@ int main(){
 
         std::cout << "start of while loops" << std::endl;
         int max = 0;
-        while (!inProgress.empty() || max == 120){ 
+        while (!inProgress.empty() && max < 120){ 
             //sets size for only the original paths, not the new added ones
             int size = inProgress.size();
+            
 
             //std::cout << "before for statement (inside while loop)" << std::endl;
             //adds all other possible paths
@@ -116,6 +117,7 @@ int main(){
 
                 std::cout << "inProgress.size() original: " << size << std::endl;
                 std::cout << "updating inProgres.size(): " << inProgress.size() << std::endl;
+                std::cout << "max: " << max << std::endl;    
 
                 std::cout << "Inside for statement, time #" << i << std::endl;
                 
@@ -185,13 +187,12 @@ int main(){
                 if(city == Reno && visitedAll(cityMap, current)){
                     routes.push_back(current);
                     //calculate length and add that to that list
-                    /*
-                    int routeLength
-                    for(int k = 0; k < current.getLength(); k++){
+                    
+                    int routeLength = 0;
+                    for(int k = 0; k < current.size(); k++){
                         routeLength = routeLength + EdgeWeightMap[current.getEntry(k)]
                     }
-                    lengths.insert(lengths.getLength(), routeLength);
-                    */
+                    lengths.insert(lengths.size(), routeLength);
                     //output route and length to file
                     /*
                     myFile << "Route " << index << ": ";
