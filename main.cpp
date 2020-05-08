@@ -11,7 +11,8 @@ typedef boost::adjacency_list<boost::listS, boost::vecS, boost::directedS, boost
 typedef boost::graph_traits<DirectedGraph>::edge_iterator edge_iterator;
 //typedef std::pair<int, int> Edge;
 typedef boost::graph_traits<DirectedGraph>::edge_descriptor Edge;
-typedef boost::property_map<DirectedGraph, boost::edge_weight_t> EdgeWeight;
+typedef boost::property_traits<DirectedGraph>::EdgeWeightProperty WeightPropertyType;
+typedef boost::property_map<DirectedGraph, boost::edge_weight_t>::WeightPropertyType EdgeWeight;
 
 //returns number of edges that depart from iputted city
 int numConnections(DirectedGraph &cityMap, int city);
@@ -190,7 +191,7 @@ int main(){
                     //calculate length and add that to that list
                     
 
-                    int currentWeight = 0;
+                    EdgeWeight currentWeight = 0;
                     int routeLength = 0;
                     for(int k = 0; k < current.size(); k++){
 
@@ -200,7 +201,7 @@ int main(){
                         }
                         std::list<Edge> Current_route = *entryIt;
 
-                        currentWeight = cityMap.get(currentWeight, cityMap, Current_route);
+                        currentWeight = get(currentWeight, cityMap, Current_route);
 
                         routeLength = routeLength + currentWeight;
 
