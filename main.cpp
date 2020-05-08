@@ -195,11 +195,11 @@ int main(){
                     int routeLength = 0;
                     for(int k = 0; k < current.size(); k++){
 
-                        std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
+                        std::list<Edge>::iterator entryIt = current.begin();
                         for(int j = 0; j < k; j++){
                             entryIt++;
                         }
-                        std::list<Edge> Current_route = *entryIt;
+                        Edge Current_route = *entryIt;
 
                         currentWeight = EdgeWeightMap[Current_route];
 
