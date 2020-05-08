@@ -155,7 +155,7 @@ int main(){
 
                     std::cout << "end of numConnections for loop" << std::endl;
                 }
-                Edge next_edge = connectionNum__(cityMap, current_city, numberOfConnections);
+                Edge next_edge = connectionNum__(cityMap, current_city, i);
                 //same check case as earlier
                 std::cout << "Before if statements about checking for duplicate case" << std::endl;
                 if(containsEdge(cityMap, Current_route, next_edge)){
