@@ -190,7 +190,14 @@ int main(){
                     
                     int routeLength = 0;
                     for(int k = 0; k < current.size(); k++){
-                        routeLength = routeLength + EdgeWeightMap[current.getEntry(k)]
+
+                        std::list<std::list<Edge>>::iterator entryIt = inProgress.begin();
+                        for(int j = 0; j < i; j++){
+                            entryIt++;
+                        }
+                        std::list<Edge> Current_route = *entryIt;
+                        
+                        routeLength = routeLength + EdgeWeightMap[Current_route]
                     }
                     lengths.insert(lengths.size(), routeLength);
                     //output route and length to file
