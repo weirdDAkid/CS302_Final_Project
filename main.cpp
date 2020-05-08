@@ -105,8 +105,8 @@ int main(){
     //making the paths
 
         std::cout << "start of while loops" << std::endl;
-
-        while (!inProgress.empty()){ 
+        int max = 0;
+        while (!inProgress.empty() || max == 120){ 
             //sets size for only the original paths, not the new added ones
             int size = inProgress.size();
 
@@ -134,7 +134,7 @@ int main(){
 
                 int numberOfConnections = numConnections(cityMap, current_city);
 
-                for(int j = 1; j <= numberOfConnections ; j++){
+                for(int j = 2; j <= numberOfConnections ; j++){
 
                     std::cout << "numConnections for loop time #" << j << std::endl;
                     Edge next_edge = connectionNum__(cityMap, current_city, j);
@@ -145,17 +145,19 @@ int main(){
                         std::cout << "inside that ^^ if statement" << std::endl;
                         std::list<Edge> duplicate(Current_route);
                         duplicate.push_back(next_edge);
+                        duplicate.unique();
                         inProgress.push_back(duplicate);
+                        inProgress.unique();
 
                         std::cout << "end of ^^ if statement" << std::endl;
                     }
                     else{
                         std::cout << "does not add" << std::endl;
                     }
-
+                    
                     std::cout << "end of numConnections for loop" << std::endl;
                 }
-                Edge next_edge = connectionNum__(cityMap, current_city, i+1);
+                Edge next_edge = connectionNum__(cityMap, current_city, 1);
                 //same check case as earlier
                 std::cout << "Before if statements about checking for duplicate case" << std::endl;
                 if(containsEdge(cityMap, Current_route, next_edge)){
@@ -288,7 +290,6 @@ Edge connectionNum__(DirectedGraph &cityMap, int city, int num){
 bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInput){
 
     //Iterates through Route list and checks each edge for a match
-    Edge temp;
 
     std::list<Edge>::iterator theIt;
     
