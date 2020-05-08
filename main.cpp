@@ -226,7 +226,7 @@ int main(){
                                 backToReno = 439;
                                 break;
                             default:
-                                os << "Oopsies";
+                                std::cout << "Oopsies";
                         }
 
                         routeLength = routeLength + currentWeight + backToReno;
