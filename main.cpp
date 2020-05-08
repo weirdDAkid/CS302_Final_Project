@@ -325,6 +325,8 @@ bool containsEdge(DirectedGraph &cityMap,  std::list<Edge> &route, Edge edgeInpu
 bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
     bool visitedCity = 0;
 
+    std::cout << "inside visited func" << std::endl;
+
     //Iterates through Route list and checks the first value of each edge for match to city
     Edge temp;
     for(int i = 0; i < route.size(); ++i){
@@ -336,12 +338,16 @@ bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
 
         //If the city is found, sets visitedCity to true
         if( source(temp, cityMap) == city ){
+
+            std::cout << "inside visited if statement" << std::endl;
             visitedCity = 1;
         }
     }
 
     //Checks the second value of the last edge for match to city
     if(target(temp, cityMap) == city){
+
+        std::cout << "inside 2nd visited if statement" << std::endl;
         visitedCity = 1;
     }
 
@@ -352,9 +358,12 @@ bool visited(DirectedGraph &cityMap, int city, std::list<Edge> &route){
 bool visitedAll(DirectedGraph &cityMap, std::list<Edge> &route){
     bool visitedAllCities = 1;
 
+    std::cout << "in visitedAll func" << std::endl;
+
     //Checks if visited all 5 cities
     for(int i = 1; i <= 5; ++i){
         if( !visited(cityMap, i, route) ){
+            std::cout << "inside if statement in visitedAll func" << std::endl;
             visitedAllCities = 0;
         }
     }
