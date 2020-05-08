@@ -200,7 +200,7 @@ int main(){
                         }
                         std::list<Edge> Current_route = *entryIt;
 
-                        currentWeight = get(currentWeight, cityMap, Current_route);
+                        currentWeight = cityMap.get(currentWeight, cityMap, Current_route);
 
                         routeLength = routeLength + currentWeight;
 
